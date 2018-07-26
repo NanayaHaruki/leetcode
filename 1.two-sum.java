@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 // 给一个数组，找出两个元素相加=target，返回两个元素的角标
 class Solution {
     public int[] twoSum(int[] nums, int target) {

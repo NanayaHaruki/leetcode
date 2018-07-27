@@ -1,7 +1,7 @@
 /**
  * 返回杨辉三角第rowIndex行的数据
  * @author:xzj
- * @date: 2018/7/26 15:05
+ * @date: 2018/7/27 11:24
  */
 class Solution {
     public List<Integer> getRow(int rowIndex) {

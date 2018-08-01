@@ -15,19 +15,30 @@
 
 class Solution {
     public void moveZeroes(int[] nums) {
-//        基本就是冒泡的思路，碰到0往后挪
-        for(int i = 0; i < nums.length-1; i++) {
-            if (nums[i] == 0) {
-                for(int j = i+1; j < nums.length; j++) {
-                    if (nums[j] != 0) {
-                        swap(nums,i,j);
-                        for(int k = j; k < nums.length-1; k++) {
-                            swap(nums,k,k+1);
-                        }
-                        break;
-                    }
-                }
+        int slow =0 ,fast = 0;
+        for(; fast < nums.length; fast++) {
+//            值不为0，快指针和慢指针一起往前走
+//            碰到0，快指针走，慢指针停，直到快指针找到非0，此时慢指针指向0，两者替换
+//            思路就是：慢指针走过的均为非0，慢指针和快指针之间的全是0
+            if (nums[fast] != 0) {
+                nums[slow] = nums[fast];
+                slow++;
             }
         }
+
+//        基本就是冒泡的思路，碰到0往后挪
+//        for(int i = 0; i < nums.length-1; i++) {
+//            if (nums[i] == 0) {
+//                for(int j = i+1; j < nums.length; j++) {
+//                    if (nums[j] != 0) {
+//                        swap(nums,i,j);
+//                        for(int k = j; k < nums.length-1; k++) {
+//                            swap(nums,k,k+1);
+//                        }
+//                        break;
+//                    }
+//                }
+//            }
+//        }
     }
 }

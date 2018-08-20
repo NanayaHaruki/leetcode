@@ -13,29 +13,24 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 
 class TestExeJava {
-    public static void main(String []      args)
+    public static void main(String[] args)
 
     {
-        int[][] arr = {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
-                {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
-                {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
-                {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}};
-        System.out.println(maxAreaOfIsland(arr));
 
+        int[] arr = {1,1,0};
+        boolean oneBitCharacter = isOneBitCharacter(arr);
+        System.out.println(oneBitCharacter);
     }
 
-    static public int maxAreaOfIsland(int[][] grid) {
-        int maxArea = 0;
-        for(int i = 0; i < grid.length; i++) {
-            for(int j = 0; j < grid[0].length; j++) {
-                maxArea = Math.max(maxArea, discovery(grid, i, j));
-            }
+    static public boolean isOneBitCharacter(int[] bits) {
+//        字符的可能性只有  0   1  10  11  这4种
+//        让指针始终指向字符的开始位置，那么为0的时候，只可能是0，长度为1；当开始位置为1的时候，该字符长度为2；
+        int n = bits.length, i = 0;
+        while (i < n - 1) {
+            if (bits[i] == 0) i++;
+            else i += 2;
         }
-        return maxArea;
+        return i == n - 1;
     }
 
     static int discovery(int[][] grid, int i, int j) {

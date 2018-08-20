@@ -17,20 +17,19 @@ class TestExeJava {
 
     {
 
-        int[] arr = {1,1,0};
-        boolean oneBitCharacter = isOneBitCharacter(arr);
+        int[] arr = {-1,-1,-1,-1,-1,0};
+        int oneBitCharacter = pivotIndex(arr);
         System.out.println(oneBitCharacter);
     }
 
-    static public boolean isOneBitCharacter(int[] bits) {
-//        字符的可能性只有  0   1  10  11  这4种
-//        让指针始终指向字符的开始位置，那么为0的时候，只可能是0，长度为1；当开始位置为1的时候，该字符长度为2；
-        int n = bits.length, i = 0;
-        while (i < n - 1) {
-            if (bits[i] == 0) i++;
-            else i += 2;
+    static public int pivotIndex(int[] nums) {
+        int sum = 0,leftSum = 0;
+        for(int num : nums) sum+=num;
+        for(int i = 0; i < nums.length; i++) {
+            if(leftSum == sum - nums[i] - leftSum) return i;
+            leftSum += nums[i];
         }
-        return i == n - 1;
+        return -1;
     }
 
     static int discovery(int[][] grid, int i, int j) {

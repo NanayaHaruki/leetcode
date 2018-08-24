@@ -17,19 +17,18 @@ class TestExeJava {
 
     {
 
-        int[] arr = {-1,-1,-1,-1,-1,0};
-        int oneBitCharacter = pivotIndex(arr);
-        System.out.println(oneBitCharacter);
+        int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+        int i = minCostClimbingStairs(arr);
+        System.out.println(i);
     }
 
-    static public int pivotIndex(int[] nums) {
-        int sum = 0,leftSum = 0;
-        for(int num : nums) sum+=num;
-        for(int i = 0; i < nums.length; i++) {
-            if(leftSum == sum - nums[i] - leftSum) return i;
-            leftSum += nums[i];
+    static public int minCostClimbingStairs(int[] cost) {
+        for(int i = 2; i < cost.length; i++) {
+//            走过的点都是走过去消耗的体力总值了
+//            当前的点赋值为当前消耗之力 加上 一步前及二步前 消耗体力较少的那个
+            cost[i] += Math.min(cost[i - 1] , cost[i - 2]);
         }
-        return -1;
+        return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
     }
 
     static int discovery(int[][] grid, int i, int j) {

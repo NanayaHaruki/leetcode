@@ -9,3 +9,5 @@ class User {
     @Expose
     val list = listOf<Int>()
 }
+
+open class A(val id:Int,val name:String)

@@ -16,19 +16,18 @@ class TestExeJava {
     public static void main(String[] args)
 
     {
-
-        int[] arr = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
-        int i = minCostClimbingStairs(arr);
-        System.out.println(i);
+        int[] arr = {1, 2, 0, 4};
+        System.out.println(dominantIndex(arr));
     }
 
-    static public int minCostClimbingStairs(int[] cost) {
-        for(int i = 2; i < cost.length; i++) {
-//            走过的点都是走过去消耗的体力总值了
-//            当前的点赋值为当前消耗之力 加上 一步前及二步前 消耗体力较少的那个
-            cost[i] += Math.min(cost[i - 1] , cost[i - 2]);
+    static public boolean isToeplitzMatrix(int[][] matrix) {
+//       矩阵边界处不需要判断，对角线相等只需要判断 横纵坐标-1 与当前值是否相等即可
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[0].length; j++) {
+                if(i>0 && j>0 && matrix[i-1][j-1] != matrix[i][j]) return false;
+            }
         }
-        return Math.min(cost[cost.length - 1], cost[cost.length - 2]);
+        return true;
     }
 
     static int discovery(int[][] grid, int i, int j) {

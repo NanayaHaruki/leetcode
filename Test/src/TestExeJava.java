@@ -8,32 +8,33 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Queue;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
 class TestExeJava {
     public static void main(String[] args) {
-        int[] ints = fairCandySwap(new int[]{1,2,5}, new int[]{2, 4});
-        for(int anInt : ints) {
-            System.out.println(anInt);
-        }
+        System.out.println(wordPattern("abbc","cat dog dog cat1"));
     }
 
-    static public int[] fairCandySwap(int[] A, int[] B) {
-//      交换后俩人总量相等，交换后没人的总量就是两人加起来除2
-        int sumA=0,sumB = 0;
-        for(int i : A) sumA+=i;
-        for(int i : B) sumB+=i;
-//        sum为交换后每人的总量
-        int sum = (sumA+sumB)>>1;
-        int diff = sumA - sum;
-        for(int i = 0; i < A.length; i++) {
-            for(int j = 0; j < B.length; j++) {
-                if(A[i] - B[j] == diff) return new int[]{A[i], B[j]};
+    static public boolean wordPattern(String pattern, String str) {
+        String regex = " ";
+        String[] arr = str.split(regex);
+        if(pattern.length() != arr.length) return false;
+        Map<Character, String> map = new HashMap<>();
+        for(int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            if (map.containsKey(c)) {
+                String valueStr = map.get(c);
+                if (!arr[i].equals(valueStr)) return false;
+            }else {
+//                不包含这个key，却包含value，说明别的key对应了value，不匹配
+                if(map.containsValue(arr[i])) return false;
+                map.put(c, arr[i]);
             }
         }
-        return new int[2];
+        return true;
     }
 
     static int discovery(int[][] grid, int i, int j) {

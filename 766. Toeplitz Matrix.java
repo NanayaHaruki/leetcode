@@ -42,7 +42,12 @@
  */
 class Solution {
     public boolean isToeplitzMatrix(int[][] matrix) {
-//
-
+//       矩阵边界处不需要判断，对角线相等只需要判断 横纵坐标-1 与当前值是否相等即可
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[0].length; j++) {
+                if(i>0 && j>0 && matrix[i-1][j-1] != matrix[i][j]) return false;
+            }
+        }
+        return true;
     }
 }

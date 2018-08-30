@@ -17,32 +17,24 @@ import java.util.function.Consumer;
 
 class TestExeJava {
     public static void main(String[] args) {
+        int[] arr = {1,1,2,2,3,3,4,5,1,1};
+        int res = distributeCandies(arr);
+        System.out.println(res);
     }
 
-    static public int numberOfBoomerangs(int[][] points) {
-//        存储两点距离出现的次数
+    static public int distributeCandies(int[] candies) {
         Map<Integer, Integer> map = new HashMap<>();
-        int result = 0;
-        for(int i = 0; i < points.length; i++) {
-            for(int j = 0; j < points.length; j++) {
-                if (i != j) {
-                    int d = gougu(points[i][0] - points[j][0], points[i][1] - points[j][1]);
-//                    这个距离出现过，+1，没出现存1
-                    map.put(d, map.getOrDefault(d, 0) + 1);
-                }
-            }
-            for(Integer count : map.values()) {
-//                某个距离出现过count次，取出一种可能性，回旋镖 A B放好，再取出一种可能性C 1(count-1) ,回旋镖放好 A B C
-                result += count * (count - 1);
-            }
-            map.clear();
+        int sum = candies.length>>1; //平分，每人一半
+        for(int candy : candies) {
+            map.put(candy, map.getOrDefault(candy, 0) + 1);
         }
-        return result;
+//        糖果种类 小于 持有数，女孩可以每样拿一个，把种类拿全；
+        if(map.size()<=sum) return map.size();
+//        通过种类数比较多，sum有多少就有多少种
+        else return sum;
+
     }
 
-    static int gougu(int x, int y) {
-        return x*x+y*y;
-    }
 
     static int discovery(int[][] grid, int i, int j) {
         if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length  //递归超出范围

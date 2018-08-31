@@ -12,6 +12,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
@@ -22,17 +23,20 @@ class TestExeJava {
         System.out.println(res);
     }
 
-    static public int distributeCandies(int[] candies) {
-        Map<Integer, Integer> map = new HashMap<>();
-        int sum = candies.length>>1; //平分，每人一半
-        for(int candy : candies) {
-            map.put(candy, map.getOrDefault(candy, 0) + 1);
+    static public int findLHS(int[] nums) {
+        Map<Integer,Integer> map = new TreeMap<>();
+        for(int num : nums) {
+            map.put(num,map.getOrDefault(num,0)+1);
         }
-//        糖果种类 小于 持有数，女孩可以每样拿一个，把种类拿全；
-        if(map.size()<=sum) return map.size();
-//        通过种类数比较多，sum有多少就有多少种
-        else return sum;
-
+        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
+        int maxLen = 0;
+        for(Map.Entry<Integer, Integer> entry : entries) {
+            if (map.containsKey(entry.getKey() + 1)) {
+                int tempMax = map.get(entry.getKey()) + map.get(entry.getKey() + 1);
+                maxLen = Math.max(maxLen, tempMax);
+            }
+        }
+        return maxLen;
     }
 
 

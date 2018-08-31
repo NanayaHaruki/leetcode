@@ -18,25 +18,33 @@ import java.util.function.Consumer;
 
 class TestExeJava {
     public static void main(String[] args) {
-        int[] arr = {1,1,2,2,3,3,4,5,1,1};
-        int res = distributeCandies(arr);
-        System.out.println(res);
+      String[] list1 =  {"Shogun", "Tapioca Express", "Burger King", "KFC"};
+      String[] list2 =  {"KFC", "Shogun", "Burger King"};
+        String[] restaurant = findRestaurant(list1, list2);
+        for(String s : restaurant) {
+            System.out.println(s);
+        }
     }
 
-    static public int findLHS(int[] nums) {
-        Map<Integer,Integer> map = new TreeMap<>();
-        for(int num : nums) {
-            map.put(num,map.getOrDefault(num,0)+1);
-        }
-        Set<Map.Entry<Integer, Integer>> entries = map.entrySet();
-        int maxLen = 0;
-        for(Map.Entry<Integer, Integer> entry : entries) {
-            if (map.containsKey(entry.getKey() + 1)) {
-                int tempMax = map.get(entry.getKey()) + map.get(entry.getKey() + 1);
-                maxLen = Math.max(maxLen, tempMax);
+    static public String[] findRestaurant(String[] list1, String[] list2) {
+        int minIndexSum = 0;
+        Map<String, Integer> map = new HashMap<>();//key存餐厅名称，value存角标
+        TreeMap<Integer, ArrayList<String>> ts = new TreeMap<>();
+        for(int i = 0; i < list1.length; i++)  map.put(list1[i], i);
+        for(int i = 0; i < list2.length; i++) {
+//            找list1中有无这个餐厅
+            Integer list1Index = map.get(list2[i]);
+            if (list1Index != null) {
+//                找到了，存进index
+                ArrayList<String> nameList = ts.getOrDefault(list1Index + i, new ArrayList<>());
+                nameList.add(list2[i]);
+                ts.put(list1Index + i, nameList);
             }
         }
-        return maxLen;
+//        treeMap会自然排序，第一个自然是最小索引
+        if(ts.size()==0) return new String[]{};
+        ArrayList<String> value = ts.firstEntry().getValue();
+        return  value.toArray(new String[0]);
     }
 
 

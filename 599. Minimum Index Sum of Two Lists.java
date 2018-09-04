@@ -28,6 +28,23 @@
  */
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
-
+        int minIndexSum = 0;
+        Map<String, Integer> map = new HashMap<>();//key存餐厅名称，value存角标
+        TreeMap<Integer, ArrayList<String>> ts = new TreeMap<>(); //key 存角标和  value存餐厅名
+        for(int i = 0; i < list1.length; i++)  map.put(list1[i], i);
+        for(int i = 0; i < list2.length; i++) {
+//            找list1中有无这个餐厅
+            Integer list1Index = map.get(list2[i]);
+            if (list1Index != null) {
+//                找到了，存进index
+                ArrayList<String> nameList = ts.getOrDefault(list1Index + i, new ArrayList<>());
+                nameList.add(list2[i]);
+                ts.put(list1Index + i, nameList);
+            }
+        }
+//        treeMap会自然排序，第一个自然是最小索引
+        if(ts.size()==0) return new String[]{};
+        ArrayList<String> value = ts.firstEntry().getValue();
+        return  value.toArray(new String[0]);
     }
 }

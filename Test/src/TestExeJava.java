@@ -1,37 +1,28 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
+import java.util.TreeSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 class TestExeJava {
     public static void main(String[] args) {
 
-
     }
 
-    static public int getImportance(List<Employee> employees, int id) {
-        return findSubImportant(employees, employees.stream().filter(employee -> employee.id == id).findFirst().get().subordinates);
-    }
-
-    static int findSubImportant(List<Employee> employees, List<Integer> ids) {
-        int res = 0;
-        for(Employee employee : employees) {
-            if(ids.contains(employee.id))
-                res += (employee.importance + findSubImportant(employees, employee.subordinates));
+    static public String longestWord(String[] words) {
+        Arrays.sort(words);
+        TreeSet<String> set = new TreeSet<>();
+        String res = "";
+        for(String word : words) {
+            if (word.length() == 1 || set.contains(word.substring(0, word.length() - 1))) {
+                if(word.length() > res.length()) res = word;
+                set.add(word);
+            }
         }
         return res;
     }
 
 
-    class Employee {
-        // It's the unique id of each node;
-        // unique id of this employee
-        public int id;
-        // the importance value of this employee
-        public int importance;
-        // the id of direct subordinates
-        public List<Integer> subordinates;
-    }
+
 
     static int discovery(int[][] grid, int i, int j) {
         if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length  //递归超出范围

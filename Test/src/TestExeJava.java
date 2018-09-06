@@ -1,27 +1,39 @@
-import java.util.Arrays;
-import java.util.TreeSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class TestExeJava {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws InterruptedException {
+        String[] arr = {"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
+        for(Object o : subdomainVisits(arr)) {
+            System.out.println(o);
+        }
     }
 
-    static public String longestWord(String[] words) {
-        Arrays.sort(words);
-        TreeSet<String> set = new TreeSet<>();
-        String res = "";
-        for(String word : words) {
-            if (word.length() == 1 || set.contains(word.substring(0, word.length() - 1))) {
-                if(word.length() > res.length()) res = word;
-                set.add(word);
+    static public List<String> subdomainVisits(String[] cpdomains) {
+        HashMap<String, Integer> map = new HashMap<>();
+        for(String cpdomain : cpdomains) {
+            String[] split = cpdomain.split(" ");
+            int count = Integer.parseInt(split[0]);
+            String domain = split[1];
+            String[] args = domain.split("\\.");
+//            题设中，域名包含1或2个.  所以args的长度为2或3
+            if (args.length == 2) {
+                map.put(args[1],map.getOrDefault(args[1],0)+count);
+                map.put(domain,map.getOrDefault(domain,0)+count);
+            }else {
+                map.put(args[2],map.getOrDefault(args[2],0)+count);
+                map.put(args[1]+"."+args[2],map.getOrDefault(args[1]+"."+args[2],0)+count);
+                map.put(domain,map.getOrDefault(domain,0)+count);
             }
         }
-        return res;
+        return map.entrySet().stream()
+                .flatMap((Function<Map.Entry<String, Integer>, Stream<String>>) entry -> Stream.of(entry.getValue()+" " +entry.getKey()))
+                .collect(Collectors.toList());
     }
-
-
 
 
     static int discovery(int[][] grid, int i, int j) {

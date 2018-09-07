@@ -34,7 +34,25 @@ import java.util.Map;
  */
 class Solution {
     public List<String> subdomainVisits(String[] cpdomains) {
-
+        HashMap<String, Integer> map = new HashMap<>();
+        for(String cpdomain : cpdomains) {
+            String[] split = cpdomain.split(" ");
+            int count = Integer.parseInt(split[0]);
+            String domain = split[1];
+            String[] args = domain.split("\\.");
+//            题设中，域名包含1或2个.  所以args的长度为2或3
+            if (args.length == 2) {
+                map.put(args[1],map.getOrDefault(args[1],0)+count);
+                map.put(domain,map.getOrDefault(domain,0)+count);
+            }else {
+                map.put(args[2],map.getOrDefault(args[2],0)+count);
+                map.put(args[1]+"."+args[2],map.getOrDefault(args[1]+"."+args[2],0)+count);
+                map.put(domain,map.getOrDefault(domain,0)+count);
+            }
+        }
+        return map.entrySet().stream()
+                .flatMap((Function<Map.Entry<String, Integer>, Stream<String>>) entry -> Stream.of(entry.getValue()+" " +entry.getKey()))
+                .collect(Collectors.toList());
     }
 }
 

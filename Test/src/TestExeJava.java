@@ -1,38 +1,33 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class TestExeJava {
     public static void main(String[] args) throws InterruptedException {
-        String[] arr = {"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"};
-        for(Object o : subdomainVisits(arr)) {
-            System.out.println(o);
+        for(String s : uncommonFromSentences("this is a apple", "this is a banana")) {
+            System.out.println(s);
         }
     }
 
-    static public List<String> subdomainVisits(String[] cpdomains) {
-        HashMap<String, Integer> map = new HashMap<>();
-        for(String cpdomain : cpdomains) {
-            String[] split = cpdomain.split(" ");
-            int count = Integer.parseInt(split[0]);
-            String domain = split[1];
-            String[] args = domain.split("\\.");
-//            题设中，域名包含1或2个.  所以args的长度为2或3
-            if (args.length == 2) {
-                map.put(args[1],map.getOrDefault(args[1],0)+count);
-                map.put(domain,map.getOrDefault(domain,0)+count);
-            }else {
-                map.put(args[2],map.getOrDefault(args[2],0)+count);
-                map.put(args[1]+"."+args[2],map.getOrDefault(args[1]+"."+args[2],0)+count);
-                map.put(domain,map.getOrDefault(domain,0)+count);
-            }
-        }
-        return map.entrySet().stream()
-                .flatMap((Function<Map.Entry<String, Integer>, Stream<String>>) entry -> Stream.of(entry.getValue()+" " +entry.getKey()))
-                .collect(Collectors.toList());
+    static public String[] uncommonFromSentences(String A, String B) {
+        String regex = " ";
+        List<String> res = new ArrayList<>();
+        HashMap<String, Integer> mapA = new HashMap<>();
+        HashMap<String, Integer> mapB = new HashMap<>();
+        for(String s : A.split(regex)) mapA.put(s,mapA.getOrDefault(s,0)+1);
+        for(String s : B.split(regex)) mapB.put(s,mapB.getOrDefault(s,0)+1);
+        mapA.forEach((s, integer) -> {
+            if(integer == 1 && !mapB.containsKey(s)) res.add(s);
+        });
+        mapB.forEach((s,integer) -> {
+            if(integer == 1 && !mapA.containsKey(s)) res.add(s);
+        });
+        return res.toArray(new String[0]);
     }
 
 

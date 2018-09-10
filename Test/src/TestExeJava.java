@@ -9,25 +9,15 @@ import java.util.stream.Stream;
 
 class TestExeJava {
     public static void main(String[] args) throws InterruptedException {
-        for(String s : uncommonFromSentences("this is a apple", "this is a banana")) {
-            System.out.println(s);
-        }
+
     }
 
-    static public String[] uncommonFromSentences(String A, String B) {
-        String regex = " ";
-        List<String> res = new ArrayList<>();
-        HashMap<String, Integer> mapA = new HashMap<>();
-        HashMap<String, Integer> mapB = new HashMap<>();
-        for(String s : A.split(regex)) mapA.put(s,mapA.getOrDefault(s,0)+1);
-        for(String s : B.split(regex)) mapB.put(s,mapB.getOrDefault(s,0)+1);
-        mapA.forEach((s, integer) -> {
-            if(integer == 1 && !mapB.containsKey(s)) res.add(s);
-        });
-        mapB.forEach((s,integer) -> {
-            if(integer == 1 && !mapA.containsKey(s)) res.add(s);
-        });
-        return res.toArray(new String[0]);
+    static  public boolean isUgly(int num) {
+        int[] arr = {2,3,5};
+        for(int i : arr) {
+            while(num % i == 0 && num > 0) num /= i;
+        }
+        return num == 1;
     }
 
 

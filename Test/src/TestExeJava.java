@@ -1,23 +1,13 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 class TestExeJava {
     public static void main(String[] args) throws InterruptedException {
-
+        for(int i = 0; i < 10; i++) {
+            double pow = Math.pow(3, i);
+        }
     }
 
-    static  public boolean isUgly(int num) {
-        int[] arr = {2,3,5};
-        for(int i : arr) {
-            while(num % i == 0 && num > 0) num /= i;
-        }
-        return num == 1;
+    static public boolean isPowerOfThree(int n) {
+//        逢3进位，3的幂必然是 10  100 1000 10000这种
+       return Integer.toString(n,3).matches("10*");
     }
 
 

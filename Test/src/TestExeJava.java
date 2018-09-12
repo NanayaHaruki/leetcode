@@ -1,19 +1,17 @@
 class TestExeJava {
     public static void main(String[] args) throws InterruptedException {
-        int[] arr = {1,8,6,2,5,4,8,3,7};
-        int i = maxArea(arr);
-        System.out.println(i);
+        int[] arr = {3,4,5,1,2};
+        System.out.println(findMin(arr));
     }
 
-    static public int maxArea(int[] height) {
-        int res = 0;
-        for(int i = 0; i < height.length-1; i++) {
-            for(int j = i + 1; j < height.length; j++) {
-                int water = (j - i) * Math.min(height[i], height[j]);
-                res = Math.max(res, water);
-            }
+    static public int findMin(int[] nums) {
+        if(nums.length==1) return nums[0];
+//        老实说我不太懂这题的意思
+        for(int i = 1; i < nums.length; i++) {
+            if(nums[i] < nums[i-1])
+                return nums[i];
         }
-        return res;
+        throw new RuntimeException("给的数组有问题");
     }
 
 

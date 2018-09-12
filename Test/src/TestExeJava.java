@@ -1,13 +1,19 @@
 class TestExeJava {
     public static void main(String[] args) throws InterruptedException {
-        for(int i = 0; i < 10; i++) {
-            double pow = Math.pow(3, i);
-        }
+        int[] arr = {1,8,6,2,5,4,8,3,7};
+        int i = maxArea(arr);
+        System.out.println(i);
     }
 
-    static public boolean isPowerOfThree(int n) {
-//        逢3进位，3的幂必然是 10  100 1000 10000这种
-       return Integer.toString(n,3).matches("10*");
+    static public int maxArea(int[] height) {
+        int res = 0;
+        for(int i = 0; i < height.length-1; i++) {
+            for(int j = i + 1; j < height.length; j++) {
+                int water = (j - i) * Math.min(height[i], height[j]);
+                res = Math.max(res, water);
+            }
+        }
+        return res;
     }
 
 

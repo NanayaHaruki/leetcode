@@ -7,6 +7,16 @@ class User {
     val args4:String="12"
 
     @Expose
+    var age = 13;
+
+    @Expose
+    var age1 = 0
+    get() {
+        field = age+1
+        return field
+    }
+
+    @Expose
     val list = listOf<Int>()
 }
 

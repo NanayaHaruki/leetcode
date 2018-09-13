@@ -1,7 +1,14 @@
 class TestExeJava {
     public static void main(String[] args) throws InterruptedException {
-        int[] arr = {3,4,5,1,2};
-        System.out.println(findMin(arr));
+
+        int num = 5;
+        char[] arr = Integer.toString(num,2).toCharArray();
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] == '0') arr[i] = '1';
+            else arr[i] = '0';
+        }
+        Integer integer = Integer.valueOf(String.valueOf(arr), 2);
+        System.out.println(integer);
     }
 
     static public int findMin(int[] nums) {

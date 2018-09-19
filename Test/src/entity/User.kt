@@ -7,7 +7,11 @@ class User {
     val args4:String="12"
 
     @Expose
-    var age = 13;
+    var age = 13
+    get() {
+        field = 55
+        return field
+    }
 
     @Expose
     var age1 = 0

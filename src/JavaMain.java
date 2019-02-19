@@ -5,6 +5,6 @@
  */
 public class JavaMain {
     public void main(String[] args) {
-        System.out.println("");
+        System.out.println(~1);
     }
 }

@@ -11,22 +11,14 @@ import easy.array.rotate
 object KotlinMain{
     @JvmStatic
     fun main(args: Array<String>) {
-        fun twoSum(nums: IntArray, target: Int): IntArray {
-            val res = IntArray(2)
-            for (i in 0 until nums.lastIndex) {
-                if (i < target) {
-                    for (j in i + 1..nums.lastIndex) {
-                        if (nums[i] + nums[j] == target) {
-                            res[0] = nums[i]
-                            res[1] = nums[j]
-                        }
-                    }
-                }
+        val a = arrayOf(intArrayOf(1,2,3), intArrayOf(4,5,6), intArrayOf(7,8,9))
+        rotate(a)
+        for (ints in a) {
+            for (int in ints) {
+                print(int)
             }
-            return res
+            println()
         }
-        println(twoSum(intArrayOf(2,2,5,2,6,8,7),9).toList())
-
 
     }
 }

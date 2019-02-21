@@ -1,3 +1,5 @@
+import java.io.PrintStream;
+
 /**
  * @Author: taoye
  * @Description:
@@ -5,6 +7,8 @@
  */
 public class JavaMain {
     public void main(String[] args) {
-        System.out.println(~1);
+        int i = Integer.MIN_VALUE;
+        int j = Math.abs(i);
+        System.out.println(j);
     }
 }

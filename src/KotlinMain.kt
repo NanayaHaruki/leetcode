@@ -2,6 +2,9 @@ import easy.array.intersect
 import easy.array.moveZeroes
 import easy.array.plusOne
 import easy.array.rotate
+import easy.string.isAnagram
+import easy.string.reverse
+import kotlin.math.abs
 
 /**
  *@Author: taoye
@@ -11,14 +14,10 @@ import easy.array.rotate
 object KotlinMain{
     @JvmStatic
     fun main(args: Array<String>) {
-        val a = arrayOf(intArrayOf(1,2,3), intArrayOf(4,5,6), intArrayOf(7,8,9))
-        rotate(a)
-        for (ints in a) {
-            for (int in ints) {
-                print(int)
-            }
-            println()
-        }
+
+        val s = "anagram"
+        val t = "nagaram"
+        print(isAnagram(s,t))
 
     }
 }

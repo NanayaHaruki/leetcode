@@ -5,7 +5,7 @@ package easy.string
  *@Description: 字符串中的第一个唯一字符
  *@Date: 15:00 2019/2/21
  */
-
+//注意事项：您可以假定该字符串只包含小写字母。
 fun firstUniqChar(s: String): Int {
     // 数组arr表示a~z出现的个数
     val charAsciiArr = IntArray(26)

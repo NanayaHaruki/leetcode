@@ -2,7 +2,9 @@ import easy.array.intersect
 import easy.array.moveZeroes
 import easy.array.plusOne
 import easy.array.rotate
+import easy.string.firstUniqChar
 import easy.string.isAnagram
+import easy.string.isPalindrome
 import easy.string.reverse
 import kotlin.math.abs
 
@@ -14,10 +16,9 @@ import kotlin.math.abs
 object KotlinMain{
     @JvmStatic
     fun main(args: Array<String>) {
+      var str = "+123"
 
-        val s = "anagram"
-        val t = "nagaram"
-        print(isAnagram(s,t))
+        print(str.toInt())
 
     }
 }

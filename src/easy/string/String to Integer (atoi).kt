@@ -1,7 +1,5 @@
 package easy.string
 
-import jdk.nashorn.internal.ir.ContinueNode
-
 /**
  *@Author:
  *@Description: 字符串转换整数 (atoi)
@@ -55,34 +53,71 @@ import jdk.nashorn.internal.ir.ContinueNode
 fun myAtoi(str: String): Int {
     val maxValueStrLen = Int.MAX_VALUE.toString().length
     var digitStr = ""
+    val str = str.trim()
     loop@ for (i in 0..str.lastIndex) {
         val c = str[i]
         when (c) {
             '+' -> {
+                if (digitStr.isNotEmpty()) {
+                    break@loop
+                } else {
+                    digitStr += c
+                }
             }
-            '-' -> digitStr += c
-            in '0'..'9' -> digitStr += c
-            ' ' -> {
+            '-' -> if (digitStr.isNotEmpty()) {
+                break@loop
+            } else {
+                digitStr += c
             }
+            '0' -> if (digitStr.isNotEmpty() && !digitStr.startsWith('-')) {
+                digitStr += c
+            }
+            in '1'..'9' -> digitStr += c
             else -> break@loop
         }
     }
     if (digitStr.isEmpty()) return 0
+    if (digitStr == "-") return 0
+    if (digitStr == "+") return 0
+
     return when (digitStr.first()) {
-        '-'-> {
-            when  {
-                digitStr.length == maxValueStrLen+1 -> {0}
-                digitStr.length < maxValueStrLen+1 -> digitStr.toInt()
-                else -> 0
+        '-' -> {
+            val IntMinStr = Int.MIN_VALUE.toString()
+            when {
+                digitStr.length == IntMinStr.length -> {
+                    if (digitStr > IntMinStr) {
+                        Int.MIN_VALUE
+                    } else {
+                        digitStr.toInt()
+                    }
+                }
+                digitStr.length < IntMinStr.length -> digitStr.toInt()
+                else -> Int.MIN_VALUE
             }
         }
-        '+'-> {
-            when  {
-                digitStr.length == maxValueStrLen+1 -> {0}
-                digitStr.length < maxValueStrLen+1 -> digitStr.toInt()
-                else -> 0
+        '+', in '0'..'9' -> {
+            if (digitStr.startsWith('+')) {
+                digitStr = digitStr.substring(1)
+            }
+            when {
+                digitStr.length == maxValueStrLen -> {
+                    if (digitStr > Int.MAX_VALUE.toString()) {
+                        Int.MAX_VALUE
+                    } else {
+                        digitStr.toInt()
+                    }
+                }
+                digitStr.length < maxValueStrLen + 1 -> digitStr.toInt()
+                else -> Int.MAX_VALUE
             }
         }
         else -> 0
     }
+//    题设里哪里写了要去掉后面的0了？ sb题目
+//    Input:
+//    "-01324000"
+//    Output:
+//    -1324
+//    Expected:
+//    -1324000
 }

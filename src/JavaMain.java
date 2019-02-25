@@ -7,8 +7,10 @@ import java.io.PrintStream;
  */
 public class JavaMain {
     public void main(String[] args) {
-        int i = Integer.MIN_VALUE;
-        int j = Math.abs(i);
-        System.out.println(j);
+        String s1 = "123";
+        String s2 = "abc";
+        System.out.println(s1.compareTo(s2));
+
+
     }
 }

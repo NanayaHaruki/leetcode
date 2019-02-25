@@ -13,9 +13,6 @@ import kotlin.math.abs
 object KotlinMain {
     @JvmStatic
     fun main(args: Array<String>) {
-//        2147483647
-//        -2147483648
-        val myAtoi = myAtoi("   +0 123")
-        print(myAtoi)
+        longestCommonPrefix(arrayOf("flower","flight","flow"))
     }
 }

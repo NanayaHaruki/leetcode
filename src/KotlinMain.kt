@@ -20,6 +20,7 @@ object KotlinMain {
     }
 
     fun isValid(s: String): Boolean {
+
         val map = mapOf<Char,Char>(Pair(')','('),
                 Pair(']','['),
                 Pair('}','{'))

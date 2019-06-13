@@ -1,20 +1,8 @@
-import easy.array.intersect
-import easy.array.moveZeroes
-import easy.array.plusOne
-import easy.array.rotate
-import easy.string.*
 import java.io.File
-import java.io.FileOutputStream
 import java.io.PrintWriter
-import java.math.BigDecimal
-import java.math.RoundingMode
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.text.DecimalFormat
-import java.text.NumberFormat
 import java.util.*
-import kotlin.Comparator
-import kotlin.math.abs
 
 /**
  *@Author: taoye
@@ -22,35 +10,30 @@ import kotlin.math.abs
  *@Date: 14:50 2019/2/18
  */
 
-data class User(val age:Int)
+
 object KotlinMain {
+    var i: Int? = null
     @JvmStatic
     fun main(args: Array<String>) {
-        val u1 = User(13)
-        val u2 = User(13)
-        val u3 = User(13)
-        val u4 = User(13)
-        val u5 = User(13)
-        val set = sortedSetOf(object:Comparator<User>{
-            override fun compare(o1: User, o2: User): Int {
-                return when {
-                    u2.age - u1.age >0 -> 1
-                    u2.age - u1.age <0 -> -1
-                    else -> 1
+        val res = isValid("()")
+        println(res)
+    }
 
+    fun isValid(s: String): Boolean {
+        val map = mapOf<Char,Char>(Pair(')','('),
+                Pair(']','['),
+                Pair('}','{'))
+        val stack= Stack<Char>()
+        for (c in s) {
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c)
+            }else {
+                if (map[c] == stack.peek()) {
+                    stack.pop()
                 }
             }
-
-        })
-        println(set.add(u1))
-        println(set.add(u2))
-        println(set.add(u3))
-        println(set.add(u4))
-        println(set.add(u5))
-        println(set)
-        println(set.contains(u1))
-        println(set.contains(User(13)))
-
+        }
+        return stack.isEmpty()
     }
 
     private fun twoBall(): Double {

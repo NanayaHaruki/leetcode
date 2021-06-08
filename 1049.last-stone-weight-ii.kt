@@ -1,12 +1,3 @@
-import kotlin.math.max
-
-fun main() {
-    val s = Solution()
-    val res = s.lastStoneWeightII(intArrayOf(2,7,4,1,8,1))
-    println(res)
-}
-
-
 class Solution {
     fun lastStoneWeightII(stones: IntArray): Int {
         // 要想结果最小，得找到两堆重量相近的
@@ -20,9 +11,9 @@ class Solution {
         for (i in 1..n) {
             for (j in 0..target) { //石头最大就是100 怎么撞只能小于100
                 val preWeight = stones[i - 1]
-                dp[i][j] = dp[i-1][j] //前项就能凑出j  这块石头不拿，也能凑出
+                dp[i][j] = dp[i-1][j]
                 if (j>=preWeight)
-                dp[i][j] = dp[i][j] or dp[i-1][j-preWeight]
+                    dp[i][j] = dp[i][j] or dp[i-1][j-preWeight]
             }
         }
         for (i in dp[n].lastIndex downTo 0) {
@@ -31,4 +22,3 @@ class Solution {
         return 0
     }
 }
-

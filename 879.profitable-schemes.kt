@@ -1,11 +1,3 @@
-import kotlin.math.max
-import kotlin.math.pow
-
-fun main() {
-    val s = Solution()
-}
-
-
 class Solution {
     /**
      * @param n 人数
@@ -41,4 +33,3 @@ class Solution {
         return dp[group.size][n][minProfit]
     }
 }
-

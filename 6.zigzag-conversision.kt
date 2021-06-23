@@ -1,19 +1,3 @@
-import java.lang.StringBuilder
-
-fun main() {
-    val c = CharArray(3)
-    val defChar = '\u0000'
-    c.forEach {
-        println(it.isWhitespace())
-        println(it == defChar)
-    }
-
-    // val s = Solution()
-    // val res = s.convert("PAYPALISHIRING", 4)
-    // println(res)
-}
-
-
 class Solution {
     fun convert(s: String, numRows: Int): String {
         if (numRows == 1) return s
@@ -63,4 +47,3 @@ class Solution {
         return sb.toString()
     }
 }
-

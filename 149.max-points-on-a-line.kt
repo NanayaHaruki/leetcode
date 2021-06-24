@@ -1,12 +1,3 @@
-import java.lang.StringBuilder
-
-fun main() {
-    val s = Solution()
-    val res = s.maxPoints(arrayOf(intArrayOf(1,1), intArrayOf(3,2), intArrayOf(5,3), intArrayOf(4,1), intArrayOf(2,3), intArrayOf(1,4)))
-    println(res)
-}
-
-
 class Solution {
     fun maxPoints(points: Array<IntArray>): Int {
         var max = 2
@@ -35,4 +26,3 @@ class Solution {
         return max
     }
 }
-

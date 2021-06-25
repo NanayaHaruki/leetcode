@@ -1,13 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val res = s.openLock(arrayOf("0201", "0101", "0102", "1212", "2002"), "0202")
-    println(res)
-}
-
-
 class Solution {
     fun openLock(deadends: Array<String>, target: String): Int {
         // bfs 用个queue存储每一步的可能性，直到找到target，遇到dead就跳过
@@ -22,7 +12,8 @@ class Solution {
         var step = 0
         while (queue.isNotEmpty()) {
             step++ //转一次
-            // 把转一次的状态全部遍历，不能用queue.isNotEmpty了，因为在不断往里面塞。继续下当前size，就遍历几次
+            // 把转一次的状态全部遍历，不能用queue.isNotEmpty了
+            // 因为在不断往里面塞。继续下当前size，就遍历几次
             for (i in queue.indices) {
                 for (status in step(queue.removeFirst())) {
                     // 没找到，继续走step，继续转，走下一次循环
@@ -60,4 +51,3 @@ class Solution {
         return res
     }
 }
-

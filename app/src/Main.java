@@ -1,33 +1,105 @@
+import com.sun.source.tree.Tree;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
-    public static void main(String[] args) {
-        int res = maxPoints(new int[][]{{1, 1}, {3, 2}, {5, 3}, {4, 1}, {2, 3}, {1, 4}});
-        System.out.println(res);
+
+    static public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
 
-    public  static int maxPoints(int[][] ps) {
-        int n = ps.length;
-        int ans = 1;
-        for (int i = 0; i < n; i++) {
-            int[] x = ps[i];
-            for (int j = i + 1; j < n; j++) {
-                int[] y = ps[j];
-                int cnt = 2;
-                System.out.print(String.format("%d,%d  %d,%d ===",x[0],x[1],y[0],y[1]));
-                for (int k = j + 1; k < n; k++) {
-                    int[] p = ps[k];
-                    int s1 = (y[1] - x[1]) * (p[0] - y[0]);
-                    int s2 = (p[1] - y[1]) * (y[0] - x[0]);
-                    if (s1 == s2) {
-                        cnt++;
-                        System.out.print(String.format("%d %d,",p[0],p[1]));
-                    }
-                }
-//                ans = Math.max(ans, cnt);
-                if (cnt>ans) ans = cnt;
-                System.out.println();
-            }
+    public class Codec {
+        // Encodes a tree to a single string.
+        public String serialize(TreeNode root) {
+            return rserialize(root, "");
         }
-        return ans;
+
+        private String rserialize(TreeNode node,String str){
+            if (node==null){
+                str += "null,";
+            }else {
+                str += (String.format("%d,",node.val));
+                str = rserialize(node.left,str);//左树被拼接上去了
+                str = rserialize(node.right,str); // 右树拼接
+            }
+            return str;
+        }
+
+        // Decodes your encoded data to tree.
+        public TreeNode deserialize(String data) {
+            String[] split = data.split(",");
+            LinkedList<String> list = new LinkedList<String>(Arrays.asList(split));
+            return rdeserialize(list);
+        }
+
+        private TreeNode rdeserialize(LinkedList<String> data) {
+            String str = data.removeFirst();
+            if (str.equals("null")) {
+                return null;
+            }
+            TreeNode node = new TreeNode(Integer.parseInt(str));
+            node.left = rdeserialize(data);
+            node.right = rdeserialize(data);
+            return node;
+        }
     }
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        root.left=new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        node3.left = new TreeNode(4);
+        node3.right = new TreeNode(5);
+        root.right = node3;
+        String str = new Codec1().serialize(root);
+        System.out.println(str);
+        TreeNode node = new Codec1().deserialize(str);
+        System.out.println(node);
+    }
+    public static class Codec1 {
+        public String serialize(TreeNode root) {
+            return rserialize(root, "");
+        }
+
+        public TreeNode deserialize(String data) {
+            String[] dataArray = data.split(",");
+            List<String> dataList = new LinkedList<String>(Arrays.asList(dataArray));
+            return rdeserialize(dataList);
+        }
+
+        public String rserialize(TreeNode root, String str) {
+            if (root == null) {
+                str += "None,";
+            } else {
+                str += root.val + ",";
+                str = rserialize(root.left, str);
+                str = rserialize(root.right, str);
+            }
+            return str;
+        }
+
+        public TreeNode rdeserialize(List<String> dataList) {
+            if (dataList.get(0).equals("None")) {
+                dataList.remove(0);
+                return null;
+            }
+
+            TreeNode root = new TreeNode(Integer.valueOf(dataList.get(0)));
+            dataList.remove(0);
+            root.left = rdeserialize(dataList);
+            root.right = rdeserialize(dataList);
+
+            return root;
+        }
+    }
+
 
 }

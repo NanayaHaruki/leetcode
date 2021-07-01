@@ -1,13 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val a = 'A' + 1
-    println(a)
-}
-
-
 class Solution {
     fun numWays(n: Int, relation: Array<IntArray>, k: Int): Int {
         // 遍历以便relation，保存每个人可以将信息传给谁
@@ -36,4 +26,3 @@ class Solution {
         return ans
     }
 }
-

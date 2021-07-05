@@ -1,21 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val t1 = System.currentTimeMillis()
-    val res = s.countOfAtoms( "K4(ON(SO3)2)2")
-    val t2 = System.currentTimeMillis()
-    println("time:"+(t2-t1))
-    print(res)
-
-    // val res = s.countOfAtoms(
-    //     "((N42)24(OB40Li30CHe3O48LiNN26)33(C12Li48N30H13HBe31)21(BHN30Li26BCBe47N40)15(H5)16)14")
-    // println("time:${System.currentTimeMillis()-t1}")
-    // println(res)
-}
-
-
 class Solution {
     /**
      * 遇（ 压一个Map<String,Int>进栈  遇） 弹栈 ，往后遍历将弹栈出的原子数量 *  ）后面的数字
@@ -102,4 +84,3 @@ class Solution {
 
 
 }
-

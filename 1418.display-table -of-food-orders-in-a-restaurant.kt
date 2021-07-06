@@ -1,15 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val set = sortedSetOf("Ceviche","Beef Burrito")
-    for (s in set) {
-        println(s)
-    }
-}
-
-
 class Solution {
     fun displayTable(orders: List<List<String>>): List<List<String>> {
         // 0是名字  1是卓号  2是餐品  转化为 第一行餐品 横向字母数序 纵向卓号升序  餐品数量
@@ -45,4 +33,3 @@ class Solution {
         return ans
     }
 }
-

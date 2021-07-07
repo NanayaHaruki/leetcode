@@ -1,14 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val i  = 1e9+7
-    println(i.toInt())
-
-}
-
-
 class Solution {
     fun countPairs(deliciousness: IntArray): Int {
         // 遍历一遍 找到最大值， 2数之和固定下来，用例最大2^20，不用考虑溢出，找出小于极值的2的幂
@@ -35,4 +24,3 @@ class Solution {
         return ans
     }
 }
-

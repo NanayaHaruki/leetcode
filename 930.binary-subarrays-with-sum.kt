@@ -1,14 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val i  = 1e9+7
-    println(i.toInt())
-
-}
-
-
 class Solution {
     fun numSubarraysWithSum(nums: IntArray, goal: Int): Int {
         // 前缀和计算 遍历到index时，sum(0..index) -  sum(i) = goal,
@@ -26,4 +15,3 @@ class Solution {
         return ans
     }
 }
-

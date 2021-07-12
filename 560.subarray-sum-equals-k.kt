@@ -1,14 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val i = 1e9 + 7
-    println(i.toInt())
-
-}
-
-
 class Solution {
     fun subarraySum(nums: IntArray, k: Int): Int {
         var sum = 0
@@ -24,4 +13,3 @@ class Solution {
         return ans
     }
 }
-

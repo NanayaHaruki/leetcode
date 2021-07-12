@@ -1,17 +1,6 @@
-import java.lang.StringBuilder
-import java.util.*
-
-fun main() {
-    val s = Solution()
-    val i = 1e9 + 7
-    println(i.toInt())
-
-}
-
-
 class Solution {
     fun hIndex(citations: IntArray): Int {
-        citations.sort()
+        citations.sort() // 274 275就是个排不排序的区别
         val n = citations.size
         var left = 0
         var right = n - 1
@@ -30,4 +19,3 @@ class Solution {
         } else 0
     }
 }
-

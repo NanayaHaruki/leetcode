@@ -1,20 +1,3 @@
-import java.lang.StringBuilder
-import java.util.*
-import kotlin.Comparator
-
-fun main() {
-    val s = Solution()
-    s.getSkyline(arrayOf(
-        intArrayOf(2, 9, 10),
-        intArrayOf(3, 7, 15),
-        intArrayOf(5, 12, 12),
-        intArrayOf(15, 20, 10),
-        intArrayOf(19, 24, 8),
-    ))
-
-}
-
-
 class Solution {
     fun getSkyline(buildings: Array<IntArray>): List<List<Int>> {
         //building的参数为left right height
@@ -53,4 +36,3 @@ class Solution {
         return ans
     }
 }
-

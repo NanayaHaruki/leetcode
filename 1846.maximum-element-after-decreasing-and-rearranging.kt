@@ -1,17 +1,3 @@
-
-import java.lang.StringBuilder
-import java.util.*
-import kotlin.Comparator
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
-
-fun main() {
-    val s = Solution()
-    val i = Int.MAX_VALUE+1
-    println(i)
-
-}
 class Solution {
     /** 数组可以任意排序  元素可以减小  数组中相邻元素只能+-1  求数组变化后的最大值 */
     fun maximumElementAfterDecrementingAndRearranging(arr: IntArray): Int {
@@ -27,4 +13,3 @@ class Solution {
         return arr.last()
     }
 }
-

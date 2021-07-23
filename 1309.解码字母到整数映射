@@ -1,0 +1,31 @@
+class Solution {
+    fun freqAlphabets(s: String): String {
+        // 建立字典映射 ，
+        // s倒序找映射字母  遇到数字直接转，遇到#，找3位转换成字母；
+        // 最后反转字符串即答案
+
+        val dict = mutableMapOf<String,Char>()
+        for (i in 1..26) {
+            if (i < 10) {
+                dict[i.toString()]= 'a'+i-1
+            }else {
+                dict["$i#"]='a'+i-1
+            }
+        }
+        val charArr = s.toCharArray()
+        val sb = StringBuilder()
+        var n = charArr.lastIndex
+        while (n>=0){
+            val c = charArr[n]
+            if (c.isDigit()) {
+                sb.append(dict[c.toString()])
+                n--
+            }else if (c == '#') {
+                val key = "${charArr[n-2]}${charArr[n-1]}#"
+                sb.append(dict[key])
+                n-=3
+            }
+        }
+        return sb.reverse().toString()
+    }
+}

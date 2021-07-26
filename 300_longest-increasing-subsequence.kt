@@ -18,4 +18,27 @@ class Solution {
         }
         return max
     }
+
+    // fun lengthOfLIS(nums: IntArray): Int {
+    //     if (nums.size==1) return 1
+    //     // 动态规划  每次找到前面小于当次遍历的数， 找到前面最长子序列 加1，遍历完
+    //     val dp = IntArray(nums.size)
+    //     dp[0] = 1
+    //     var longest = 0
+    //     var ans = 1
+    //     for (i in 1 until nums.size) {
+    //         for (j in 0 until i){
+    //             if (nums[j] < nums[i] && dp[j]>longest) {
+    //                 longest = dp[j]
+    //             }
+    //         }
+    //         val newLongest = longest+1
+    //         dp[i]=newLongest
+    //         longest=0
+    //         if (newLongest> ans ){
+    //             ans = newLongest
+    //         }
+    //     }
+    //     return ans
+    // }
 }

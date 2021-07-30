@@ -16,3 +16,15 @@ class Solution {
         return res;
     }
 }
+
+// kotlin
+  class Solution {
+      fun titleToNumber(columnTitle: String): Int {
+          // "A"-1 "Z"-26 "AA"-27  就是26进制
+          var ans =0
+          for (i in columnTitle.lastIndex downTo 0){
+              ans+= 26.0.pow(columnTitle.length-i-1).toInt()*(columnTitle[i]-'A'+1)
+          }
+          return ans
+      }
+  }

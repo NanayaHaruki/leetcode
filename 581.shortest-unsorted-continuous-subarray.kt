@@ -32,3 +32,23 @@ class Solution {
     	return end - start +1
     }
 }
+
+class Solution {
+    fun findUnsortedSubarray(nums: IntArray): Int {
+        // 对子数组排序，使整个数组有序。
+        // 将原数组排序，子数组左右不发生变化，也就是找最长的前后缀
+        val sortedNums = nums.sortedArray()
+        var left = 0
+        var right = nums.size-1
+        for (i in nums.indices) {
+            if (nums[left] == sortedNums[left]) {
+                left++
+            }
+            if (nums[right] == sortedNums[right]) {
+                right--
+            }
+        }
+        if (left>=right) return 0
+        else return right-left+1
+    }
+}

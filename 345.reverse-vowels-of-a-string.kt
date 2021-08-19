@@ -18,4 +18,38 @@ class Solution {
         }
         return String(charArr)
     }
+
+
+    /** 双指针 */
+    fun reverseVowels(s: String): String {
+        val arr = s.toCharArray()
+        val target = charArrayOf('a','o','e','i','u','A','E','I','O','U')
+
+        var l = 0
+        var r = arr.lastIndex
+        while (l<r) {
+            val lChar = arr[l]
+            val rChar = arr[r]
+            when {
+                lChar in target && rChar in target->{
+                    // 互换
+                    arr[l]=rChar
+                    arr[r]=lChar
+                    l++
+                    r--
+                }
+                lChar in target && rChar !in target->{
+                    r--
+                }
+                lChar !in target && rChar in target->{
+                    l++
+                }
+                else ->{
+                    l++
+                    r--
+                }
+            }
+        }
+        return String(arr)
+    }
 }

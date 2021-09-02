@@ -1,0 +1,17 @@
+class Solution() {
+    fun getKthFromEnd(head: ListNode?, k: Int): ListNode? {
+        val tmp = LinkedList<ListNode>()
+        var point = head
+        while (point!=null){
+            if (tmp.size<k){
+                tmp.addLast(point)
+                point = point.next
+            }else if(tmp.size==k) {
+                tmp.removeFirst()
+                tmp.addLast(point)
+                point = point.next
+            }
+        }
+        return if (tmp.size<k)return null else tmp.peekFirst()
+    }
+}

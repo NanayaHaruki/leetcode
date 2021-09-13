@@ -42,3 +42,27 @@ class Solution {
         return x*x+y*y;
     }
 }
+
+class Solution() {
+    fun numberOfBoomerangs(points: Array<IntArray>): Int {
+        val dict = mutableMapOf<Int,Int>()
+        var ans = 0
+        for (i in points.indices){
+            val (x1,y1) = points[i]
+            for (j in points.indices){
+                if (i!=j){
+                    val (x2,y2) = points[j]
+                    val distance = (x1-x2)*(x1-x2)+(y1-y2)*(y1-y2)
+                    val cnt = dict.getOrDefault(distance,0)
+                    dict[distance]=cnt+1
+                }
+            }
+            // 排列相同距离可能性
+            for ((distance,cnt) in dict){
+                ans += cnt*(cnt-1)
+            }
+            dict.clear()
+        }
+        return ans
+    }
+}

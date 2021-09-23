@@ -40,3 +40,21 @@ class Solution {
     }
 }
 
+class Solution() {
+    fun isPowerOfThree(n: Int): Boolean {
+        // 判断一个数是不是3的幂
+        // 用3往上乘，乘出来有他就返回true，乘到大与它了就返回false
+        val longN = n.toLong()
+        if (longN<1) return false
+        var i = 1L
+        while (i<=Int.MAX_VALUE){
+            when{
+                i<longN->i*=3
+                i>longN->return false
+                i==longN-> return true
+            }
+        }
+        return false
+    }
+}
+

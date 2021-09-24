@@ -1,0 +1,39 @@
+class Solution() {
+    fun flatten(root: Node?): Node? {
+        // 扁平化node，
+        // 没有child，cur指针往后走，遇到child，指针不动。
+        // 跳到child，从child开头记录子指针，然后往后面找
+        // 找到null了，cur将当前next指向child，child置空，childPoint的next指向cur的next，cur指向next
+        if (root==null)return null
+        dfs(root)
+        return root
+    }
+
+    /** 返回最后一个 */
+    private fun dfs(node:Node):Node{
+        var cur = node
+        while (true){
+            if (cur.child==null){
+                if (cur.next!=null) {
+                    cur = cur.next!!
+                }else{
+                    break
+                }
+            }else {
+                val childFirst:Node = cur.child!!
+                val childLast :Node= dfs(childFirst) //孩子只有一个节点，childFirst=childLast
+                val next :Node?= cur.next
+
+                cur.next = childFirst
+                childFirst.prev=cur
+                cur.child=null
+
+                childLast.next=next
+                next?.prev = childLast
+
+                cur = childLast
+            }
+        }
+        return cur
+    }
+}

@@ -23,4 +23,21 @@ class Solution {
         }
         return dp[n - 1]
     }
+
+    fun jump(nums: IntArray): Int {
+        val n = nums.size-1
+        var step = 0
+        var reach = 0
+        var nextReach = 0
+        for (i in 0 until n){
+            // 更新下一跳能到的最远距离
+            nextReach = max(nextReach,i+nums[i])
+            // 到达step次跳远的最远距离了，更新step和最远距离
+            if (i==reach) {
+                step++
+                reach = nextReach
+            }
+        }
+        return step
+    }
 }

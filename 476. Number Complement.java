@@ -30,5 +30,9 @@ class Solution {
         }
         return Integer.valueOf(String.valueOf(arr), 2);
     }
+
+
 }
+
+
 

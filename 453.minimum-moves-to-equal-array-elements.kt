@@ -31,3 +31,23 @@ class Solution {
         return sum - min*n
     }
 }
+// 21/10/20
+import kotlin.math.min
+class Solution {
+	fun minMoves(nums: IntArray): Int {
+		// 每次使n-1个元素+1,让所有元素相等，返回最小操作次数
+		// 每操作一次，总和增加 n-1 ,每次都操作最小值，设最终数组所有元素都加到x了
+		// x = min + cnt
+		// x*n=sum+(n-1)*cnt
+		// -> min * n +cnt * n = sum + n*cnt - cnt
+		// cnt = sum - min * n
+		var min = Int.MAX_VALUE
+		var sum = 0
+		for (i in nums){
+			min = min(min,i)
+			sum+=i
+		}
+		return sum- min*nums.size
+	}
+}
+

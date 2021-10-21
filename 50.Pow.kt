@@ -10,5 +10,6 @@ fun myPow(x: Double, n: Int): Double {
             val num = myPow(x,n/2)
             num*num
         }
+
     }
 }

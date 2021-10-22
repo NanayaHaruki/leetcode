@@ -1,3 +1,4 @@
+import kotlin.math.*
 fun minCostClimbingStairs(cost: IntArray): Int {
     // dp[n] 表示到n的时候，需要的最小cost
     val dp = IntArray(cost.size + 1)

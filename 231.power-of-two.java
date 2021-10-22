@@ -1,3 +1,4 @@
+
 // 判断一个数是不是2的幂
 class Solution {
     public boolean isPowerOfTwo(int n) {

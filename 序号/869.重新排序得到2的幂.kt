@@ -26,7 +26,7 @@ class Solution {
                 while (m > 0) {
                     val mod = m % 10
                     val modCnt = dict[mod]
-                    // 不能直接返回false，位数相同的有很多 比如 16 32 64 或者1 2 4 8
+                    // 不能直接返回false，位数相同的有很多 比如 16 32 64.最小路径和.kt 或者1 2 4 8
                     if (modCnt == null) continue@out
                     else {
                         if(modCnt==1) dict.remove(mod)

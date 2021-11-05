@@ -18,4 +18,24 @@ class Solution {
         }
         return dp[n][n]
     }
+
+    fun longestPalindromeSubseq(s: String): Int {
+        // 回文子序列，从短的字符向长的转移
+        // dp[i][j]表示从i到j的最长回文子序列长度
+        val n = s.length
+        val arr = s.toCharArray()
+        val dp = Array(n) { IntArray(n) }
+        for (len in 1..n) {
+            for (l in 0 until n) {
+                val r = l + len - 1
+                if (r >= n) break
+                dp[l][r] = when (len) {
+                    1 -> 1
+                    2 -> if (arr[l] == arr[r]) 2 else 1
+                    else -> if (arr[l] == arr[r]) dp[l + 1][r - 1] + 2 else maxOf(dp[l + 1][r], dp[l][r - 1])
+                }
+            }
+        }
+        return dp[0][n-1]
+    }
 }

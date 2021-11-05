@@ -1,4 +1,5 @@
 fun isPerfectSquare(num: Int): Boolean {
+    if(num==1) return true
     var l = 1
     var r = num
     while(l<=r){

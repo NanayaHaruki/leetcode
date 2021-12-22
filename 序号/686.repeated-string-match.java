@@ -16,4 +16,21 @@ class Solution {
 //        找不到就返回-1
         return -1;
     }
+
+    // kotlin 21-12-22
+    fun repeatedStringMatch(a: String, b: String): Int {
+        // b 可能用到a头尾的一部分 ，拼接后的a总长最多2a+b
+        val sb = StringBuilder(a)
+        var ans = 1
+        val maxLen = a.length*2+b.length
+        while (sb.length<=maxLen){
+            if (sb.contains(b)) {
+                return ans
+            }else {
+                ans++
+                sb.append(a)
+            }
+        }
+        return -1
+    }
 }

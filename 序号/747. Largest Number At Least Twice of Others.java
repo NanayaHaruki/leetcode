@@ -38,4 +38,20 @@ class Solution {
         return max1 >= 2*max2?index:-1;
 
     }
+
+    fun dominantIndex(nums: IntArray): Int {
+        var max = -1
+        var preMax = -1
+        var maxIndex = -1
+        for (i in nums.indices){
+            if (nums[i] > max) {
+                preMax = max
+                max = nums[i]
+                maxIndex = i
+            }else if (nums[i] > preMax) {
+                preMax = nums[i]
+            }
+        }
+        return if (max/2.0 >= preMax) maxIndex else -1
+    }
 }

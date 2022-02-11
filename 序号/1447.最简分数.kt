@@ -29,4 +29,25 @@ class Solution {
 			operator(_a / b, _b / b)
 		}
 	}
+	006257
+	003567
+	519702
+	001487
+	002943
+
+	161716
+	360009
+  /*------ 简单模板 --------*/
+	fun gcd(a:Int,b:Int) :Int{ // 欧几里得算法
+		return if(b == 0 ) a  else gcd(b, a % b)
+	}
+	fun simplifiedFractions(n: Int): List<String> {
+		val ans = mutableListOf<String>()
+		for (i in 1 until n){
+			for (j in i+1 .. n){
+				if (gcd(i,j)==1) ans.add("$i/$j")
+			}
+		}
+		return ans
+	}
 }

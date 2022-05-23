@@ -70,3 +70,74 @@ fun judge(tree: Tree, forest: List<List<Int>>): List<Tree> {
   if (row < forest.size - 1 && forest[row + 1][col] > 0) ans.add(Tree(dist + 1, 0, row + 1, col))
   return ans
 }
+
+// A*
+
+class Solution {
+  var dirs = arrayOf(intArrayOf(-1, 0), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(0, 1))
+  fun cutOffTree(forest: List<List<Int>>): Int {
+    val trees: ArrayList<IntArray> = ArrayList()
+    val row: Int = forest.size
+    val col: Int = forest[0].size
+    for (i in 0 until row) {
+      for (j in 0 until col) {
+        if (forest[i][j] > 1) {
+          trees.add(intArrayOf(i, j))
+        }
+      }
+    }
+    Collections.sort(trees) { a, b -> forest[a.get(0)][a.get(1)] - forest[b.get(0)][b.get(1)] }
+    var cx = 0
+    var cy = 0
+    var ans = 0
+    for (i in 0 until trees.size) {
+      val steps = bfs(forest, cx, cy, trees[i][0], trees[i][1])
+      if (steps == -1) {
+        return -1
+      }
+      ans += steps
+      cx = trees[i][0]
+      cy = trees[i][1]
+    }
+    return ans
+  }
+  
+  fun bfs(forest: List<List<Int>>, sx: Int, sy: Int, tx: Int, ty: Int): Int {
+    if (sx == tx && sy == ty) {
+      return 0
+    }
+    val row: Int = forest.size
+    val col: Int = forest[0].size
+    val costed = Array(row) { IntArray(col) }
+    for (i in 0 until row) {
+      Arrays.fill(costed[i], Int.MAX_VALUE)
+    }
+    val pq: PriorityQueue<IntArray> = PriorityQueue<IntArray> { a, b -> a.get(0) - b.get(0) }
+    costed[sx][sy] = Math.abs(sx - tx) + Math.abs(sy - ty)
+    pq.offer(intArrayOf(costed[sx][sy], 0, sx * col + sy))
+    while (!pq.isEmpty()) {
+      val arr: IntArray = pq.poll()
+      val cost = arr[0]
+      val dist = arr[1]
+      val loc = arr[2]
+      val cx = loc / col
+      val cy = loc % col
+      if (cx == tx && cy == ty) {
+        return dist
+      }
+      for (i in 0..3) {
+        val nx = cx + dirs[i][0]
+        val ny = cy + dirs[i][1]
+        if (nx >= 0 && nx < row && ny >= 0 && ny < col && forest[nx][ny] > 0) {
+          val ncost = dist + 1 + Math.abs(nx - tx) + Math.abs(ny - ty)
+          if (ncost < costed[nx][ny]) {
+            pq.offer(intArrayOf(ncost, dist + 1, nx * col + ny))
+            costed[nx][ny] = ncost
+          }
+        }
+      }
+    }
+    return -1
+  }
+}
+

@@ -13,7 +13,7 @@ class Solution() {
     }
 */
     fun corpFlightBookings(bookings: Array<IntArray>, n: Int): IntArray {
-        // 数组不变，区间查询：前缀和
+        // 数组不变，区间查询：前缀和 0jB43O
         // 区间修改，单点查询：差分
         // 单点修改，区间查询：树状数组
         // 区间修改，区间查询：线段树（其他问题也可以线段树解决，但效果不好，迫不得已才使用）

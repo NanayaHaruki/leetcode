@@ -13,14 +13,11 @@ class Solution {
     // 最慢速度是香蕉总量/时间，最快速度是堆数最大值（h>=piles.length，且一次只能吃一堆)
     // 不断二分，求满足条件的最小left
     // 二分容易，怎么判断满足条件
-    
-    piles = _piles.sortedArrayDescending()
-    var sum = 0;var max = 0
+    var sum = 0;var max = 0;piles=_piles;h=_h
     for (banana in piles){
       sum+=banana
       max= maxOf(banana,max)
     }
-    h = _h
     var l = if(sum/h>1) sum/h else 1
     var r = max
     while (l <= r) {
@@ -38,13 +35,8 @@ class Solution {
     var time = 0
     for (i in piles.indices) {
       val banana = piles[i]
-      // 数组倒序排序过了，出现一次能吃掉一堆的情况，后面的不用遍历了，剩几堆就需要几小时吃完
-      if (banana <= v) {
-        time += (piles.size - i)
-        break
-      }
-      time += banana / v
-      if (banana % v != 0) time += 1
+      if (banana%v==0) time+= banana/v
+      else time+=(banana/v+1)
     }
     return time <= h
   }

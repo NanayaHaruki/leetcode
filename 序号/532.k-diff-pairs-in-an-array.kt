@@ -10,6 +10,23 @@
  * 对子有唯一约束性 (1,3) (3,1) 是同一个   数组里有多个1和多个3  都只能算一个
  */
 class Solution {
+  fun findPairs(nums: IntArray, k: Int): Int {
+    // 满足两数差值为k的数组对数量
+    val n = nums.size;
+    val set = mutableSetOf<String>()
+    nums.sort()
+    for (i in 1 until n) {
+      for (j in 0 until i) {
+        // 数组因为排序过，j为0差值最大，随j自增，差值变小，当小于k就不用继续检查了
+        val diff = nums[i] - nums[j]
+        if (diff == k) set.add("${nums[i]}_${nums[j]}")
+        else if (diff < k) break
+        else continue
+      }
+    }
+    return set.size
+  }
+  
    fun findPairs(nums: IntArray, k: Int): Int {
         //因为对子有唯一约束性，所以弄个set存起来防止重复
         val set = mutableSetOf<Int>()

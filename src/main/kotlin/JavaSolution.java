@@ -9,26 +9,24 @@ import java.util.Map;
  * @Description:
  * @Date: 13:20 2019/2/18
  */
-class JavaSolution {
-    public int findDuplicate(int[] nums) {
-        int n = nums.length;
-        int l = 1, r = n - 1, ans = -1;
-        while (l <= r) {
-            int mid = (l + r) >> 1;
-            int cnt = 0;
-            for (int i = 0; i < n; ++i) {
-                if (nums[i] <= mid) {
-                    cnt++;
-                }
+
+public class JavaSolution {
+    public int findKthNumber(int m, int n, int k) {
+        int left = 1, right = m * n;
+        while (left < right) {
+            int x = left + (right - left) / 2;
+            int count = x / n * n;
+            for (int i = x / n + 1; i <= m; ++i) {
+                count += x / i;
             }
-            if (cnt <= mid) {
-                l = mid + 1;
+            if (count >= k) {
+                right = x;
             } else {
-                r = mid - 1;
-                ans = mid;
+                left = x + 1;
             }
         }
-        return ans;
+        return left;
     }
+
 
 }

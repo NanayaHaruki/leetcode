@@ -1,45 +1,40 @@
 package main.kotlin
 
-import kotlin.text.StringBuilder
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.ArrayDeque
+import kotlin.collections.ArrayList
 
 class Solution {
-  fun reverseOnlyLetters(s: String): String {
-    var (l, r) = 0 to s.length - 1
-    val arr = s.toCharArray()
-    while (l < r) {
-      if (!arr[l].isLetter()) {
-        l++
-      } else if (!arr[r].isLetter()) {
-        r--
-      } else {
-        val tmp = arr[r]
-        arr[r] = arr[l]
-        arr[l] = tmp
-        l++
-        r--
+  fun replaceWords(dictionary: List<String>, sentence: String): String {
+    // dictionary.sortedWith{a,b-> a.length-b.length}
+    dictionary.sortedWith(object:Comparator<String>{
+      override fun compare(o1: String, o2: String): Int {
+        return o1.length-o2.length
+      }
+    })
+    val strArr = sentence.split(" ").toMutableList()
+    for (i in strArr.indices){
+      for (root in dictionary){
+        if (strArr[i].startsWith(root)){
+          strArr[i]=root
+          break
+        }
       }
     }
-    return String(arr)
+    return strArr.joinToString(" ")
   }
 }
 
 
 fun main() {
   val s = Solution()
-  println(s.reverseOnlyLetters("a-bC-dEf-ghIj"))
-  println(s.reverseOnlyLetters("Test1ng-Leet=code-Q!"))
-}
-
-fun printBit(num: Int, radix: Int) {
-  val sb = StringBuilder()
-  for (i in 31 downTo 0) {
-    val bit = if ((num and (1 shl i)) == 0) '0' else '1'
-    sb.append(bit)
-    if (sb.length == 8) {
-      print("${sb.toString().toInt(2).toString(radix)}_")
-      sb.clear()
-    }
-  }
+  val a = s.replaceWords(
+    listOf("a","b","c"),
+    "aadsfasf absbs bbab cadsfafs"
+  )
+  println(a)
+  
 }
 
 class ListNode(var `val`: Int) {

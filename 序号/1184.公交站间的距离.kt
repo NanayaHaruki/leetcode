@@ -14,3 +14,23 @@ fun distanceBetweenBusStops(dist: IntArray, s: Int, t: Int): Int {
   }
   return minOf(a, b)
 }
+
+/**
+int distanceBetweenBusStops(vector<int> &distance, int start, int destination) {
+// 算2遍，要么顺时针 要么逆时针
+if (destination == start) return 0;
+int n = distance.size();
+vector<int> pre(n+1);
+for (int i = 0; i < n; i++) {
+pre[i + 1] = distance[i] + pre[i];
+}
+int ma = max(start, destination), mi = 0;
+if (ma == start)
+mi = destination;
+else
+mi = start;
+int a = pre[ma] - pre[mi];
+int b = pre[n] - a;
+return min(a, b);
+}
+ * */

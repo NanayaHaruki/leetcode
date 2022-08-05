@@ -5,7 +5,14 @@
  */
 class Solution {
 	public int majorityElement(int[] nums) {
-
+		int half = nums.length/2;
+		HashMap<Integer,Integer> m = new HashMap<>();
+		for(int i:nums){
+			int cnt = m.getOrDefault(i,0);
+			if(cnt==half) return i;
+			m.put(i,++cnt);
+		}
+		return 0;
 	}
 }
 

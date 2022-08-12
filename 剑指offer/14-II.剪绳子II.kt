@@ -31,7 +31,6 @@ class Solution {
       b = b * b % mod
       p /= 2
     }
-    println(ans)
     return ans
   }
   

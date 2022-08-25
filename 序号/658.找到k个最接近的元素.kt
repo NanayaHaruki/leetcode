@@ -1,4 +1,24 @@
 import kotlin.math.abs
+class Solution {
+    fun findClosestElements(arr: IntArray, k: Int, x: Int): List<Int> {
+        // 找x最近的k个数
+        val insertIndex =  arr.binarySearch(x).let { if(it>=0) it else -it-1 }
+        var l = insertIndex-1;var r = insertIndex
+        val ans = mutableListOf<Int>()
+        while(ans.size<k){
+            if(l<0) ans.add(arr[r++])
+            else if(r>=arr.size) ans.add(arr[l--])
+            else {
+                val dl = abs(arr[l]-x)
+                val dr = abs(arr[r]-x)
+                if(dl<=dr) ans.add(arr[l--])
+                else ans.add(arr[r++])
+            }
+        }
+        ans.sort()
+        return ans
+    }
+}
 fun findClosestElements(arr: IntArray, k: Int, x: Int): List<Int> {
     // 在arr中找最靠近x的k个数  距离相同，优先加入小的
     // 先在arr中二分找到左边界

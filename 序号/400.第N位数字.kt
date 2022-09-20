@@ -2,6 +2,9 @@ import kotlin.math.pow
 
 class Solution {
   // 22.9.20
+  // 执行用时：120 ms, 在所有 Kotlin 提交中击败了100.00% 的用户
+  // 内存消耗：32.2 MB, 在所有 Kotlin 提交中击败了80.00% 的用户
+  // 通过测试用例：71 / 71
   val len = intArrayOf(0, 9, 189, 2889, 38889, 488889, 5888889, 68888889, 788888889)
   fun findNthDigit(n: Int): Int {
     var l = 0

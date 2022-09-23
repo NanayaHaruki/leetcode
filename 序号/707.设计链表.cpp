@@ -1,3 +1,6 @@
+//64 / 64 个通过测试用例
+//   执行用时: 36 ms
+//   内存消耗: 19.3 MB
 class MyLinkedList {
   struct Node {
     int i;

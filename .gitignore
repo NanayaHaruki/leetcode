@@ -1,3 +1,7 @@
 /.idea/
 /out/
 /app/src/A.java
+/.gradle/
+/build/
+/gradle/
+/src/main/

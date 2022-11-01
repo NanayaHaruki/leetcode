@@ -32,8 +32,10 @@ class User{
 }
 @Strictfp
 fun main() {
-  val s = Solution()//1223345
-  print(System.currentTimeMillis())
+  var pq = PriorityQueue<Int>()
+  pq.add(3);
+  pq.add(8)
+  println(pq.peek())
 }
 
 
@@ -58,20 +60,7 @@ fun createTree(arr: Array<Int?>): List<TreeNode?> {
   return nodeList
 }
 
-inline fun <reified T> printAns(methods: Array<String>, args: String) {
-  val ins = T::class.java.getConstructor().newInstance()
-  
-  val methodArr = methods
-  val argsArr = args.split(',')
-  println("${methodArr.size} ${argsArr.size}")
-  for (i in 1 until methodArr.size) {
-    val m = methodArr[i]
-    val arg = argsArr[i].substring(1 until argsArr[i].length - 1)
-    val a = T::class.java.getMethod(m, Int::class.java).invoke(ins, arg.toInt())
-    
-    
-  }
-}
+
 
 class ListNode(var `val`: Int) {
   var next: ListNode? = null

@@ -6,6 +6,7 @@
     "__config": "cpp",
     "ostream": "cpp",
     "filesystem": "cpp",
-    "new": "cpp"
+    "new": "cpp",
+    "queue": "cpp"
   }
 }

@@ -26,9 +26,8 @@ class Solution {
     return ans
   }
 }
-class User{
-  data class Bag(val weight:Int)
-  var g:Bag?=null
+fun mergeKLists(lists: Array<ListNode?>): ListNode? {
+  val q = PriorityQueue<ListNode>(){n1,n2->n1.`val`<n2.`val`};
 }
 @Strictfp
 fun main() {

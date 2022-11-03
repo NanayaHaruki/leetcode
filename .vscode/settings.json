@@ -9,6 +9,7 @@
     "new": "cpp",
     "queue": "cpp",
     "iosfwd": "cpp",
-    "complex": "cpp"
+    "complex": "cpp",
+    "string": "cpp"
   }
 }

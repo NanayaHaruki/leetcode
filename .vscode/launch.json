@@ -4,12 +4,18 @@
   // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    
+    {
+      "type": "java",
+      "name": "Launch JavaMain",
+      "request": "launch",
+      "mainClass": "JavaMain",
+      "projectName": "leetcode"
+    },
     {
       "type": "lldb",
       "request": "launch",
       "name": "Debug",
-      "program": "${fileDirname}/src/main/cpp/main.cpp",
+      "program": "${fileDirname}/src/main/cpp/main",
       "args": [],
       "cwd": "${workspaceFolder}"
     }

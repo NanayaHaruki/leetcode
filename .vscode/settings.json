@@ -11,6 +11,10 @@
     "iosfwd": "cpp",
     "complex": "cpp",
     "string": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "xhash": "cpp",
+    "xtr1common": "cpp",
+    "algorithm": "cpp",
+    "xutility": "cpp"
   }
 }

@@ -29,10 +29,10 @@ class Solution {
 
 @Strictfp
 fun main() {
-  var pq = PriorityQueue<Int>()
-  pq.add(3)
-  pq.add(8)
-  println(pq.peek())
+  val s = "123";
+  val q = s;
+  println(System.identityHashCode(s))
+  println(System.identityHashCode(q))
 }
 
 fun createTree(arr: Array<Int?>): List<TreeNode?> {

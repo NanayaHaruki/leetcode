@@ -33,7 +33,8 @@
     "tuple": "cpp",
     "optional": "cpp",
     "stack": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "type_traits": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

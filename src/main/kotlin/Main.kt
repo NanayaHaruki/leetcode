@@ -6,13 +6,24 @@ import kotlin.math.log
 import kotlin.math.pow
 
 const val mod = (1e9 + 7).toInt()
-
+data class User(
+  var age:Int=0,
+  var name:String = "-",
+  val books:List<String> = emptyList()
+){
+  var dog = "-"
+}
 
 
 @Strictfp
 fun main() {
-  println(File.separator)
-  println(File.separatorChar)
+  val u1 = User(13,"lucy",listOf("aa","bb"))
+  u1.dog = "wang"
+  val u2 = u1.copy()
+  println(u1)
+  
+  println(u2.toString()+",${u2.dog}")
+
 }
 
 fun createTree(arr: Array<Int?>): List<TreeNode?> {

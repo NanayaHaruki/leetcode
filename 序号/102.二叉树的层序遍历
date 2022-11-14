@@ -1,0 +1,23 @@
+class Solution {
+ public:
+  /** 层序遍历 */
+  vector<vector<int>> levelOrder(TreeNode* root) {
+    if(!root) return {};
+    vector<vector<int>> ans;
+    deque<TreeNode*> q{root};
+    int sz;
+    while(true){
+      sz = q.size();
+      if(sz==0) break;
+      vector<int> v;
+      for(int i = 0;i<sz;i++){
+        TreeNode * front = q.front();q.pop_front();
+        v.emplace_back(front->val);
+        if(front->left) q.emplace_back(front->left);
+        if(front->right) q.emplace_back(front->right);
+      }
+      ans.emplace_back(v);
+    }
+    return ans;
+  }
+};

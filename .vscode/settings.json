@@ -34,7 +34,8 @@
     "optional": "cpp",
     "stack": "cpp",
     "variant": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "__nullptr": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

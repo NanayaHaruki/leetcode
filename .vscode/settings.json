@@ -35,7 +35,8 @@
     "stack": "cpp",
     "variant": "cpp",
     "type_traits": "cpp",
-    "__nullptr": "cpp"
+    "__nullptr": "cpp",
+    "__mutex_base": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

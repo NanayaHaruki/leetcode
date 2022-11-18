@@ -17,12 +17,8 @@ data class User(
 
 @Strictfp
 fun main() {
-  val u1 = User(13,"lucy",listOf("aa","bb"))
-  u1.dog = "wang"
-  val u2 = u1.copy()
-  println(u1)
-  
-  println(u2.toString()+",${u2.dog}")
+  val f = File("1.class");
+  println(f.delete())
 
 }
 

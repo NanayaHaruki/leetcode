@@ -6,6 +6,7 @@ import kotlin.math.log
 import kotlin.math.pow
 
 const val mod = (1e9 + 7).toInt()
+<<<<<<< Updated upstream
 data class User(
   var age:Int=0,
   var name:String = "-",
@@ -13,13 +14,27 @@ data class User(
 ){
   var dog = "-"
 }
+=======
 
+class User constructor(val name:String){
+  init{
+    println("init")
+  }
+>>>>>>> Stashed changes
+
+}
 
 @Strictfp
 fun main() {
+<<<<<<< Updated upstream
   val f = File("1.class");
   println(f.delete())
 
+=======
+  val u1 = User("lily")
+  val list = mutableListOf<User>()
+  list.add(u1)
+>>>>>>> Stashed changes
 }
 
 fun createTree(arr: Array<Int?>): List<TreeNode?> {

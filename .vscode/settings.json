@@ -35,8 +35,13 @@
     "stack": "cpp",
     "variant": "cpp",
     "type_traits": "cpp",
+<<<<<<< Updated upstream
     "__nullptr": "cpp",
     "__mutex_base": "cpp"
+=======
+    "istream": "cpp",
+    "fstream": "cpp"
+>>>>>>> Stashed changes
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

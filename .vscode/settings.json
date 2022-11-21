@@ -11,6 +11,10 @@
     "iosfwd": "cpp",
     "complex": "cpp",
     "string": "cpp",
-    "set": "cpp"
+    "set": "cpp",
+    "unordered_map": "cpp",
+    "deque": "cpp",
+    "optional": "cpp",
+    "variant": "cpp"
   }
 }

@@ -1,3 +1,20 @@
+
+class Solution {
+ public:
+  int lengthOfLongestSubstring(string s) {
+    // 将索引存起来，没出现过直接存索引，比对从0到该索引长度是否为最大
+    // 出现过索引，比对长度，更新索引
+    vector<int> dp(128, -1);
+    int ans = 0, n = s.length(), l = -1;
+    for (int i = 0; i < n; i++) {
+      char c = s[i];
+      l = max(l, dp[c] + 1);
+      ans = max(ans, i - l + 1);
+      dp[c]=i;
+    }
+    return ans;
+  }
+};
 /*
 执行用时：4 ms, 在所有 C++ 提交中击败了97.69% 的用户
 内存消耗：8.1 MB, 在所有 C++ 提交中击败了65.06% 的用户

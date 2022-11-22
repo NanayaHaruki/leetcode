@@ -11,6 +11,7 @@ class Solution {
     while (!q.empty()) {
       r = q.front().first;
       c = q.front().second;
+      if(grid[r][c]!=1) continue;
       grid[r][c] = -1;
       ans++;
       for (auto& dir : dirs) {

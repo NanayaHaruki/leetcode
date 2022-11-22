@@ -15,6 +15,8 @@
     "unordered_map": "cpp",
     "deque": "cpp",
     "optional": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "numeric": "cpp",
+    "iostream": "cpp"
   }
 }

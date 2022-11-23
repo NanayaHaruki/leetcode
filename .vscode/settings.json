@@ -17,6 +17,19 @@
     "optional": "cpp",
     "variant": "cpp",
     "numeric": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "stdexcept": "cpp",
+    "__hash_table": "cpp",
+    "__node_handle": "cpp",
+    "__tree": "cpp",
+    "array": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "locale": "cpp",
+    "map": "cpp",
+    "stack": "cpp",
+    "string_view": "cpp",
+    "tuple": "cpp",
+    "unordered_set": "cpp"
   }
 }

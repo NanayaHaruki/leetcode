@@ -32,5 +32,6 @@
     "tuple": "cpp",
     "unordered_set": "cpp",
     "xtree": "cpp"
-  }
+  },
+  "python.formatting.provider": "black"
 }

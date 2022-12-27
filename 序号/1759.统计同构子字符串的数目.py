@@ -14,3 +14,5 @@ class Solution:
                 cnt = 1
                 char = c
         return ans
+
+ 

@@ -1,0 +1,18 @@
+
+
+def food(male,w,h,a):
+  # 计算bmr
+  if male:
+    bmr= 10*w+6.25*h-5*a+5
+  else :
+    bmr= 10*w+6.25*h-5*a-161
+
+  a = w # 1kg体重需要摄入1g蛋白质，每克蛋白质功能4kcal
+  b= bmr*0.2/9 # 脂肪供能
+  c = (bmr-4*w-bmr*0.2)/4
+  print("能量：%d, 蛋白质：%dg 供能比：%.2f,脂肪%dg 供能比：%.2f,碳水：%dg 供能比：%.2f" % (bmr,a,4.0*a/bmr,b,b*9.0/bmr,c,c*4.0/bmr))
+  return (a,b,c)
+
+male = True
+w,h,a=66,170,34
+food(male,w,h,a)

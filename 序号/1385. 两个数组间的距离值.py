@@ -8,3 +8,5 @@ class Solution:
             if bisect.bisect_right(arr2,mx)==k:
                 ans+=1         
         return ans
+
+        

@@ -40,7 +40,9 @@
     "initializer_list": "cpp",
     "__string": "cpp",
     "memory": "cpp",
-    "type_traits": "cpp"
+    "type_traits": "cpp",
+    "algorithm": "cpp",
+    "utility": "cpp"
   },
   "python.formatting.provider": "black"
 }

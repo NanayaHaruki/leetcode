@@ -1,23 +1,10 @@
 class Solution:
     def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
-        words1, words2 = sentence1.split(" "), sentence2.split(" ")
-        if len(words1)>len(words2):
-            words1,words2=words2,words1
-        for i in range(len(words1)+1):  # words1 前i个单词在words2的首部，其余在尾部
-            f = True
-            for j in range(len(words1)):
-                if j < i:
-                    if words1[j] == words2[j]:
-                        continue
-                    else:
-                        f = False
-                        break
-                else:
-                    if words1[j - len(words1)] == words2[j - len(words1)]:
-                        continue
-                    else:
-                        f = False
-                        break
-            if f:
-                return True
-        return False
+        w1,w2=sentence1.split(' '),sentence2.split(' ')
+        i,j=0,0
+        m,n=len(w1),len(w2)
+        while i<m and i<n and w1[i]==w2[i]:
+            i+=1
+        while m-j-1>=0 and n-j-1>=0 and w1[m-j-1]==w2[n-j-1]:
+            j+=1
+        return (i+j)>=min(m,n)

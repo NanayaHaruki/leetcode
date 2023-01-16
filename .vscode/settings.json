@@ -31,7 +31,11 @@
     "string_view": "cpp",
     "tuple": "cpp",
     "unordered_set": "cpp",
-    "xtree": "cpp"
+    "xtree": "cpp",
+    "istream": "cpp",
+    "__bit_reference": "cpp",
+    "__mutex_base": "cpp",
+    "sstream": "cpp"
   },
   "python.formatting.provider": "black"
 }

@@ -1,29 +1,31 @@
 from math import ceil
 from typing import List
-
+import bisect
 class Solution:
-    def minSideJumps(self, obstacles: List[int]) -> int:
-        n=len(obstacles)
-        mx=int(2**31-1)
-        dp=[[mx for _ in range(3)] for _ in range(n)]
-        dp[0][0]=1
-        dp[0][1]=0
-        dp[0][2]=1
-        for i in range(1,n):
-            if obstacles[i]:
-                dp[i][obstacles[i]-1]=mx
-                
-            dp[i][0]=min(dp[i-1][0],dp[i-1][1]+1,dp[i-1][2]+1)
-            dp[i][1]=min(dp[i-1][1],dp[i-1][0]+1,dp[i-1][2]+1)
-            dp[i][2]=min(dp[i-1][2],dp[i-1][0]+1,dp[i-1][1]+1)
-
-            if obstacles[i]:
-                dp[i][obstacles[i]-1]=mx
-        return min(dp[-1])
+    def calculateTax(self, brackets: List[List[int]], income: int) -> float:
+        # i = bisect.bisect_right(brackets,income,lambda x:x[0])
+        l,r=-1,len(brackets)
+        while l+1<r:
+            m=(l+r)//2
+            if brackets[m][0]<=income:
+                l=m
+            else:
+                r=m
+        i=r
+        ans=0
+        for j in range(i+1):
+            if j==0:
+                ans+=brackets[j][0]*brackets[j][1]
+            elif j==i: 
+                ans+= (income-brackets[j-1][0])*brackets[j][1]
+            else:
+                ans+=(brackets[j][0]-brackets[j-1][0])*brackets[j][1]
+        return ans/100
             
 
 
                     
+brackets = [[3,50],[7,10],[12,25]]; income = 0
 
-i=Solution().minSideJumps([0,1,2,3,0])
+i=Solution().calculateTax(brackets,income)
 print(i)

@@ -1,31 +1,26 @@
 from math import ceil
 from typing import List
 import bisect
+from collections import defaultdict
+from collections import Counter
 class Solution:
-    def calculateTax(self, brackets: List[List[int]], income: int) -> float:
-        # i = bisect.bisect_right(brackets,income,lambda x:x[0])
-        l,r=-1,len(brackets)
-        while l+1<r:
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        n=len(nums)
+        if n==1:return nums[0]
+        l,r=-1,n
+        while l+2<r:
             m=(l+r)//2
-            if brackets[m][0]<=income:
-                l=m
+            if nums[m]==nums[m+1]:
+                if m&1:r=m
+                else:l=m+1
             else:
-                r=m
-        i=r
-        ans=0
-        for j in range(i+1):
-            if j==0:
-                ans+=brackets[j][0]*brackets[j][1]
-            elif j==i: 
-                ans+= (income-brackets[j-1][0])*brackets[j][1]
-            else:
-                ans+=(brackets[j][0]-brackets[j-1][0])*brackets[j][1]
-        return ans/100
+                if (m+1)&1:r=m+1
+                else:l=m
+        return nums[l+1]
+                
             
 
 
-                    
-brackets = [[3,50],[7,10],[12,25]]; income = 0
 
-i=Solution().calculateTax(brackets,income)
+i=Solution().singleNonDuplicate([1,1,2,3,3,4,4,8,8])
 print(i)

@@ -43,7 +43,13 @@
     "type_traits": "cpp",
     "algorithm": "cpp",
     "utility": "cpp",
-    "compare": "cpp"
+    "compare": "cpp",
+    "__locale": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "memory_resource": "cpp",
+    "iomanip": "cpp",
+    "format": "cpp"
   },
   "python.formatting.provider": "black"
 }

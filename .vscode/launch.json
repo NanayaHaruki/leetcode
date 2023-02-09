@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "kotlin",
+      "request": "launch",
+      "name": "Kotlin Launch",
+      "projectRoot": "${workspaceFolder}",
+      "mainClass": "${fileDirname}/Main"
+    },
+    {
       "name": "C/C++: clang++ 生成和调试活动文件",
       "type": "cppdbg",
       "request": "launch",
@@ -47,6 +54,5 @@
     //     }
     //   ]
     // },
-    
   ]
 }

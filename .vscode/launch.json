@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Kotlin Launch",
       "projectRoot": "${workspaceFolder}",
-      "mainClass": "${fileDirname}/Main"
+      "mainClass": "${fileDirname}/Main.kt"
     },
     {
       "name": "C/C++: clang++ 生成和调试活动文件",

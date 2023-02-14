@@ -49,7 +49,8 @@
     "cstdlib": "cpp",
     "memory_resource": "cpp",
     "iomanip": "cpp",
-    "format": "cpp"
+    "format": "cpp",
+    "__debug": "cpp"
   },
   "python.formatting.provider": "black"
 }

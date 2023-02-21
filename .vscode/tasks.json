@@ -32,7 +32,7 @@
     {
       "label": "echo",
       "type": "shell",
-      "command": "kotlinc main.kt -include-runtime -d main.jar",
+      "command": "kotlinc ${fileDirname}/main.kt -include-runtime -d main.jar",
       "group": {
           "kind": "build",
           "isDefault": true

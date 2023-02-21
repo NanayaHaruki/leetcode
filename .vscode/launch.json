@@ -1,6 +1,15 @@
 {
   "version": "0.2.0",
   "configurations": [
+   
+    {
+      "name": "python",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+
     {
       "type": "kotlin",
       "request": "launch",

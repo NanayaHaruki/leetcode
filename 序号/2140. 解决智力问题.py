@@ -1,6 +1,3 @@
-from typing import List
-from collections import Counter
-
 class Solution:
     def mostPoints(self, questions: List[List[int]]) -> int: 
         '''questions[i] [points,skips] 解决当前问题，获得分数point，但后面skips个问题都不能回答'''
@@ -11,15 +8,3 @@ class Solution:
             # i不拿，就跟i+1相同，i拿了，就是当前值加上j的值
             dp[i]=max(dp[i+1],questions[i][0]+(dp[j] if j<n else 0)) 
         return dp[0]
-
-
-
-
-
-
-
-
-        
-
-
-

@@ -1,11 +1,10 @@
 import kotlin.math.min
 import kotlin.booleanArrayOf
-
+import rand
 
 fun main() {
-    val i = Solution().longestRepeating(a,b,c)
-    print(a)
-    3  2
+    for i in range(20):
+        Rand
 }
 
 class Solution1 {

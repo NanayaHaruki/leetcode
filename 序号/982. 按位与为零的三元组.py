@@ -1,6 +1,3 @@
-from typing import List
-from collections import Counter,defaultdict
-
 class Solution:
     def countTriplets(self, nums: List[int]) -> int:
         d = defaultdict(int)
@@ -11,18 +8,5 @@ class Solution:
         for i in nums:
             for j in d:
                 if i&j==0:
-                    ans+=d[i&j]
+                    ans+=d[j]
         return ans
-
-
-
-
-
-
-
-
-
-        
-
-
-

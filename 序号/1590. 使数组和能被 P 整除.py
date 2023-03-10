@@ -1,9 +1,3 @@
-from typing import List
-from collections import Counter,defaultdict
-import sys
-import time
-import functools
-
 class Solution:
     def minSubarray(self, nums: List[int], p: int) -> int:
         '''
@@ -24,8 +18,3 @@ class Solution:
                 ans=min(ans,i-d[pre])
             d[ps[i]%p]=i
         return -1 if ans ==n else ans
-
-
-
-i = Solution().minSubarray([8,32,31,18,34,20,21,13,1,27,23,22,11,15,30,4,2],148)
-print(i)

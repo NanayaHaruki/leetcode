@@ -5,27 +5,26 @@ import time
 import functools
 
 class Solution:
-    def minSubarray(self, nums: List[int], p: int) -> int:
-        '''
-        前缀和+两数之和
-        '''
-
-        n = len(nums)
-        ps = [0]*(n+1)
-        for i in range(1,n+1):
-            ps[i]=ps[i-1]+nums[i-1]
-        t = ps[-1]%p # t 即为要删掉的子数组之和模p的目标
-        if t==0:return 0
-        d={}
-        ans=n
-        for i in range(n+1):
-            pre = (ps[i]-t+p)%p
-            if pre in d:
-                ans=min(ans,i-d[pre])
-            d[ps[i]%p]=i
-        return -1 if ans ==n else ans
-
-
-
-i = Solution().minSubarray([8,32,31,18,34,20,21,13,1,27,23,22,11,15,30,4,2],148)
+    def findLongestSubarray(self, array: List[str]) -> List[str]:
+        d = {}
+        diff,l,r = 0,0,0
+        for i,x in enumerate(array):
+            if len(x)==1 and ord(x)>=65:
+                diff+=1
+            else :
+                diff-=1
+            if diff==0:
+                l,r=0,i
+            elif diff in d :      
+                if i-d[diff]>r-l+1:          
+                    l,r=d[diff]+1,i
+            else:
+                d[diff]=i
+        return array[l:r+1] if r else []
+            
+a=["42","10","O","t","y","p","g","B","96","H","5","v","P","52","25","96","b","L","Y","z","d","52","3","v","71","J","A","0","v","51","E","k","H","96","21","W","59","I","V","s","59","w","X","33","29","H","32","51","f","i","58","56","66","90","F","10","93","53","85","28","78","d","67","81","T","K","S","l","L","Z","j","5","R","b","44","R","h","B","30","63","z","75","60","m","61","a","5","S","Z","D","2","A","W","k","84","44","96","96","y","M"]
+b=["52","3","v","71","J","A","0","v","51","E","k","H","96","21","W","59","I","V","s","59","w","X","33","29","H","32","51","f","i","58","56","66","90","F","10","93","53","85","28","78","d","67","81","T","K","S","l","L","Z","j","5","R","b","44","R","h","B","30","63","z","75","60","m","61","a","5"]
+print(len(a))
+print(len(b))
+i = Solution().findLongestSubarray(a)
 print(i)

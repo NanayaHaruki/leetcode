@@ -1,6 +1,3 @@
-from typing import List
-from collections import Counter,defaultdict
-
 class Solution:
     def countSubgraphsForEachDiameter(self, n: int, edges: List[List[int]]) -> List[int]:
         '''统计最大间距的子树数量'''
@@ -40,9 +37,3 @@ class Solution:
             for j in range(i+1,n):
                 ans[dis[i][j]-1]+=dfs(i,j,dis[i][j],i,-1)
         return ans
-
-
-
-
-i=Solution().countSubgraphsForEachDiameter(4,[[1,2],[2,3],[2,4]])
-print(i)

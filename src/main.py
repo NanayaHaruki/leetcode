@@ -2,47 +2,23 @@ from typing import List
 from collections import Counter,defaultdict
 
 class Solution:
-    def countSubgraphsForEachDiameter(self, n: int, edges: List[List[int]]) -> List[int]:
-        '''统计最大间距的子树数量'''
-        # floyd 统计两点最短路径
-        dis = [[0x3f3f3f3f]*n for _ in range(n)]
-        g  =[[] for _ in range(n)]
-        for a,b in edges:
-            g[a-1].append(b-1)
-            g[b-1].append(a-1)
-            dis[a-1][b-1]=1
-            dis[b-1][a-1]=1
-        for i in range(n): # 遍历所有中继点
-            for j in range(n): # 遍历所有起始点
-                for k in range(n): # 遍历与j连接的终点
-                    if j==k:
-                        dis[j][k]=dis[k][j]=0
-                        continue
-                    if dis[j][i]+dis[i][k]<dis[j][k]:
-                        dis[j][k]=dis[j][i]+dis[i][k]
-        print(dis)
-        def dfs(start,end,distance,a,b):
-            '''
-            start 到 end最大距离distance有多少子树
-            在start-end之间，可以某些节点独立分支出去，只要最大长度不超过distance都可以计算入内
-            '''
-            cnt=1
-            for next in g[a]:
-                if next != b and (dis[start][next]<distance or (dis[start][next]==distance and next>end)) \
-                and (dis[end][next]<distance or (dis[end][next]== distance and next>start)):
-                    cnt*=dfs(start,end,distance,next,a)
-            if dis[start][a]+dis[end][a]>distance:
-                cnt+=1
-            return cnt
-
-        ans=[0]*(n-1)    
-        for i in range(n):
-            for j in range(i+1,n):
-                ans[dis[i][j]-1]+=dfs(i,j,dis[i][j],i,-1)
+    def findLengthOfShortestSubarray(self, nums: List[int]) -> int:
+        n=len(nums)
+        l,r=0,n-1
+        while l+1<n and nums[l+1]>=nums[l]:l+=1
+        while r-1>=0 and nums[r-1]<=nums[r]:r-=1
+        if l>=r: # 两个非递减有交叉，说明整体非递减
+            return 0
+        # 枚举每一个左端点i，在右侧找符合条件的最小位置j，删除[i+1,j-1]中间的数
+        ans=min(n-l-1,r) # 保留左边，总共n个数，左边l+1个数，需要删掉n-(l+1);保留右边，需要删掉[0,r-1],长度为r
+        for i in range(l+1):
+            while r <n and nums[r]<nums[i]:
+                r+=1
+            ans=min(ans,r-i-1)
         return ans
 
 
-
-
-i=Solution().countSubgraphsForEachDiameter(4,[[1,2],[2,3],[2,4]])
+l=[16,10,0,3,22,1,14,7,1,12,15]
+i = Solution().findLengthOfShortestSubarray(l)
 print(i)
+

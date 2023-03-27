@@ -1,10 +1,3 @@
-from typing import List
-from collections import Counter, defaultdict, deque
-import math
-import itertools
-from functools import cache
-
-
 class Solution:
     def countSubstrings(self, s: str, t: str) -> int:
         """
@@ -41,7 +34,28 @@ class Solution:
                     r = dpr[i + 1][j + 1] + 1 if i < m - 1 and j < n - 1 else 1
                     ans += l * r
         return ans
+                    
+        
+        
 
-
-i = Solution().countSubstrings("aba", "baba")
-print(i)
+    # 暴力
+    # def countSubstrings(self, s: str, t: str) -> int:
+    #     '''
+    #     遍历s的不同长度，用这个长度作为滑动窗口在t上滑动，查找只有一个字符不等的数量
+    #     '''
+    #     ls,lt = len(s),len(t)
+    #     ans=0
+    #     for l in range(1,min(ls,lt)+1):
+    #         for i in range(l,ls+1):
+    #             curS = s[i-l:i]
+    #             for j in range(l,lt+1):
+    #                 curT = t[j-l:j]
+    #                 diffCnt = 0
+    #                 for k in range(l):
+    #                     if curS[k]!=curT[k]:
+    #                         diffCnt+=1
+    #                         if diffCnt>1:
+    #                             break
+    #                 if diffCnt==1:
+    #                     ans+=1
+    #     return ans

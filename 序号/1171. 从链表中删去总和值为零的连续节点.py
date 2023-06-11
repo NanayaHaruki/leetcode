@@ -21,5 +21,5 @@ class Solution:
                 s=0
             else:
                 slow_sum[s]=p
-            p=p.next
+            p=p.next 
         return fake.next

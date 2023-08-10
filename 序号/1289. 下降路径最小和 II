@@ -1,0 +1,29 @@
+class Solution:
+    def minFallingPathSum(self, grid: List[List[int]]) -> int:
+        # 与931不同，不需要相邻了，可以选上一行的任意列，除了自己所在的列
+        cache=[[0,-1] for _ in range(4)]
+        m,n=len(grid),len(grid[0])
+        for i in range(m):
+            for j in range(n):
+                if cache[0][1]==j:
+                    grid[i][j]+=cache[1][0]
+                else:
+                    grid[i][j]+=cache[0][0]
+
+                if j==0:
+                    cache[2]=(grid[i][j],0)
+                elif j==1:
+                    if grid[i][j]<cache[2][0]:
+                        cache[3]=cache[2]
+                        cache[2]=(grid[i][j],j)
+                    else:
+                        cache[3]=(grid[i][j],j)
+                else:
+                    if grid[i][j]<cache[2][0]:
+                        cache[3]=cache[2]
+                        cache[2]=(grid[i][j],j)
+                    elif grid[i][j]<cache[3][0]:
+                        cache[3]=(grid[i][j],j)
+            cache[0]=cache[2]
+            cache[1]=cache[3]
+        return min(grid[-1])

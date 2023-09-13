@@ -50,7 +50,8 @@
     "memory_resource": "cpp",
     "iomanip": "cpp",
     "format": "cpp",
-    "__debug": "cpp"
+    "__debug": "cpp",
+    "thread": "cpp"
   },
   "python.formatting.provider": "none",
   "[python]": {

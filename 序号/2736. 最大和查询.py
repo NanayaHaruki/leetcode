@@ -22,4 +22,4 @@ class Solution:
             idx = bisect.bisect_left(stack,(qy,0))
             if idx < len(stack):
                 ans[i]=stack[idx][1]
-        return ans
+        return ans  

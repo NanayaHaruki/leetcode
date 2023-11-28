@@ -17,4 +17,4 @@ class Solution:
                 continue
             ans+=i*i if dfs(i*i,i) else 0
             i+=1
-        return ans
+        return ans  

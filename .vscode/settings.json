@@ -85,5 +85,7 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "python.analysis.extraPaths": [
+    "D:\\anaconda\\Lib\\site-packages" ],
   "C_Cpp.errorSquiggles": "disabled"
 }

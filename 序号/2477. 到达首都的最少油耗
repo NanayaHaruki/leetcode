@@ -1,0 +1,65 @@
+class Solution {
+  long long  petrol=0;
+  int seats;
+  int dfs(vector<vector<int>> &g,int cur,int fa){
+    // 统计有多少人
+    int people=1;
+    for(int child:g[cur]){
+      if (child==fa) continue;
+       int childPeople=dfs(g,child,cur);
+        people+=childPeople;
+        petrol+=(childPeople+seats-1)/seats;
+    }
+    return people;
+  }
+ public:
+  long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
+    // 建表
+    this->seats=seats;
+    size_t sz = roads.size() + 1;
+    vector<vector<int>> g(sz);
+    for(auto & e:roads){
+      g[e[0]].emplace_back(e[1]);
+      g[e[1]].emplace_back(e[0]);
+    }
+    dfs(g,0,-1);
+    return petrol;
+  }
+};
+
+
+class CostNode:
+    def __init__(self,v):
+        self.val=v
+        self.children=set()
+    def addChild(self,child):
+        self.children.add(child)
+class Solution:
+    def minimumFuelCost(self, roads: List[List[int]], seats: int) -> int:
+        # 建树，再递归统计每个节点 子树到自己这需要消耗多少油
+        d=defaultdict(set)
+        for a,b in roads:
+            d[a].add(b)
+            d[b].add(a)
+        def build(node):
+            for v in d[node.val]:
+                child = CostNode(v)
+                node.addChild(child)
+                d[v].remove(node.val)
+                build(child)
+        root =CostNode(0)
+        build(root)
+        def dfs(node): # 返回有多少人，往父节点走耗费油代量
+            if not node:return 0
+            p,oil=1,0
+            for child in node.children:
+                (a,b)=dfs(child)
+                p+=a;oil+=b
+            oil+=p//seats
+            if p%seats:oil+=1
+            # print(node.val,oil)
+            return (p,oil)
+        ans=0
+        for child in root.children:
+            ans+=dfs(child)[1]
+        return ans

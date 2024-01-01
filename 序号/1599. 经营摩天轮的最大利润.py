@@ -1,5 +1,25 @@
 class Solution:
     def minOperationsMaxProfit(self, customers: List[int], boardingCost: int, runningCost: int) -> int:
+        # 贪心
+        i=0
+        ans=-1
+        w=customers[i]
+        mxProfit=p=w*boardingCost
+        n=len(customers)
+        while w or i<n: # 还有人排队 或 暂时没人，但后面的时间点还会来人
+            if w>=4:
+                p=p+4*boardingCost-runningCost
+                w-=4
+            else:
+                p=p+w*boardingCost-runningCost
+                w=0
+            i+=1
+            if p>mxProfit:
+                mxProfit=p
+                ans=i
+            if i<n:
+                w+=customers[i]
+        return ans
         mx = 0 # 最大利润
         ans=-1
         cnt = 0 # 第几次转

@@ -5,11 +5,13 @@ class Solution:
         # ... 不能全部拿空
 
         beans.sort()
-        n,remainBeans=len(beans),0
+        n=len(beans)
+        mxLeft=0
         for i,x in enumerate(beans):
-            cur=x*(n-i) # 前面的全部拿空，剩下的拿到x个豆子，cur表示剩下的豆子总数；要求拿走最小值，就是求剩下最大值
-            remainBeans=max(remainBeans,cur)
-        return sum(beans)-remainBeans
+            # [0,i-1] 全部拿走，[i,n) 拿到x
+            left=(n-i)*x # 剩余越多拿的越少
+            mxLeft=max(mxLeft,left)
+        return sum(beans)-mxLeft
 
 
         # sm=sum(beans)

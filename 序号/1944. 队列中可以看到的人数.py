@@ -1,5 +1,5 @@
 class Solution:
-    def canSeePersonsCount(self, heights: List[int]) -> List[int]:
+    def canSeePersonsCount(self, heights: [int]) -> List[int]:
         # 单调栈 弹出前面比cur矮的，被弹的能看到的人数，就是自己和cur索引差
         st=[]
         n=len(heights)

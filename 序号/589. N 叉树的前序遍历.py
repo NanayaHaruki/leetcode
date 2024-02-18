@@ -6,18 +6,29 @@ class Node:
         self.children = children
 """
 
+# 24.02.18
 class Solution:
     def preorder(self, root: 'Node') -> List[int]:
-        
-        l=[]
-        if not root:return l
-        def dfs(node):
-            if node:
-                l.append(node.val)
-                if node.children:
-                    for c in node.children:
-                        dfs(c)
-            else :
-                l.append(None)
+        ans=[]
+        def dfs(root):
+            if not root:return
+            ans.append(root.val)
+            for child in root.children:
+                dfs(child)
         dfs(root)
-        return l
+        return ans
+# class Solution:
+#     def preorder(self, root: 'Node') -> List[int]:
+        
+#         l=[]
+#         if not root:return l
+#         def dfs(node):
+#             if node:
+#                 l.append(node.val)
+#                 if node.children:
+#                     for c in node.children:
+#                         dfs(c)
+#             else :
+#                 l.append(None)
+#         dfs(root)
+#         return l

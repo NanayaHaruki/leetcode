@@ -12,7 +12,6 @@ class Solution:
                     m[c]=1
                 else:
                     if m[c]==2:
-                        print(c)
                         return i
                     else:
                         m[c]+=1

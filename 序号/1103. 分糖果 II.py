@@ -21,4 +21,4 @@ class Solution:
             else:
                 ans[i]+=candies
                 candies=0
-        return ans
+        return ans 

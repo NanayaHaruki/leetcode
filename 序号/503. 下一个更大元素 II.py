@@ -1,5 +1,17 @@
 class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        ans = [-1]*n
+        q = []
+        for i in range(2*n):
+            x = nums[i%n]
+            while q and q[-1][0]<x:
+                v,j = q.pop()
+                ans[j]=x
+            q.append((x,i%n))
+        return ans  
+       
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
         n=len(nums)
         q=deque()
         ans=[-1]*n

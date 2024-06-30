@@ -10,7 +10,5 @@ class Solution:
                 return 0
             if i<0:
                 return 1 if t==0 else 0
-            if t<nums[i]:
-                return dfs(i-1,t)
             return  dfs(i-1,t)+dfs(i-1,t-nums[i])
         return dfs(len(nums)-1,target)

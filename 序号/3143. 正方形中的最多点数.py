@@ -21,4 +21,5 @@ class Solution:
                 ans+=1
             else:
                 break
+        
         return ans

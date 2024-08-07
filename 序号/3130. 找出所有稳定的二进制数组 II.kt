@@ -14,7 +14,7 @@ class Solution {
                     a[i][j] -= b[i - limit - 1][j]
                 a[i][j] = (a[i][j] + modulo) % modulo
                 b[i][j] = a[i][j - 1] + b[i][j - 1]
-                if (j > limit)
+                if (j > limit) 
                     b[i][j] -= a[i][j - limit - 1]
                 b[i][j] = (b[i][j] + modulo) % modulo
             }

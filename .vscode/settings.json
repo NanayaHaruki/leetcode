@@ -79,7 +79,9 @@
     "typeinfo": "cpp",
     "__nullptr": "cpp",
     "chrono": "cpp",
-    "concepts": "cpp"
+    "concepts": "cpp",
+    "charconv": "cpp",
+    "execution": "cpp"
   },
   "python.formatting.provider": "none",
   "[python]": {

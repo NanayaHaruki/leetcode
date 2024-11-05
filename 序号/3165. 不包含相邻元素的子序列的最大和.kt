@@ -27,7 +27,8 @@ class Solution:
             maintain(o)
 
         # 把 nums[i] 改成 val
-        def update(o: int, l: int, r: int, i: int, val: int) -> None:
+        def update(o: int, l: int, r: int, i
+        : int, val: int) -> None:
             if l == r:
                 t[o][3] = max(val, 0)
                 return

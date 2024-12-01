@@ -51,3 +51,40 @@ fun backTrack(row: Int) {
         }
     }
 }
+
+/** 24/12/01 */
+class Solution {
+    fun solveNQueens(n: Int): List<List<String>> {
+        val cols = IntArray(n)
+        fun check(i:Int,j:Int):Boolean{
+            for (row in 0 until i){
+                val col = cols[row]
+                if (col==j) return false
+                if(abs(row - i) == abs(col-j)) return false
+            }
+            return true
+        }
+
+        val ans = mutableListOf<List<String>>()
+        fun dfs(r:Int){
+            if(r==n){
+                val curAns = mutableListOf<String>()
+                for (c in cols){
+                    val row = CharArray(n){'.'}
+                    row[c]='Q'
+                    curAns.add(String(row))
+                }
+                ans.add(curAns)
+            }else{
+                for (c in 0 until n){
+                    if(check(r,c)){
+                        cols[r]=c
+                        dfs(r+1)
+                    }
+                }
+            }
+        }
+        dfs(0)
+        return ans
+    }
+}

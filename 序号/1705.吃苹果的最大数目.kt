@@ -1,3 +1,35 @@
+/** 24/12/24 */
+class Solution {
+    fun eatenApples(apples: IntArray, days: IntArray): Int {
+        // 先吃快烂的
+        val pq = PriorityQueue<IntArray>{a,b->a[0]-b[0]}
+        val n = apples.size
+        var ans = 0
+        var d = 0
+        while(d<n || pq.isNotEmpty()){
+            if(d<n && apples[d]>0){
+                pq.offer(intArrayOf(d+days[d],apples[d]))
+            }
+            while(pq.isNotEmpty()) {
+                val arr = pq.peek()
+                if(arr[0]<=d) {
+                    pq.poll()
+                }else{
+                    if (arr[1]==1){
+                        pq.poll()
+                    }else{
+                        arr[1]-=1
+                    }
+                    ++ans
+                    break
+                }
+            }
+            ++d
+        }
+        return ans
+    }
+}
+
 class Solution {
     private var ans = 0
     private lateinit var apples: IntArray

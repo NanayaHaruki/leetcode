@@ -39,3 +39,18 @@ class MyCalendar() {
     return false
   }
 }
+
+/** 25/01/02 */
+class MyCalendar() {
+  val times = TreeSet<IntArray>{a,b->a[0]-b[0]}
+  fun book(startTime: Int, endTime: Int): Boolean {
+      val leftLimit = times.lower(intArrayOf(startTime,0))
+      if (leftLimit!=null && leftLimit[1] >=startTime)
+          return false
+      val rightLimit = times.ceiling(intArrayOf(startTime,0))
+      if (rightLimit!=null && rightLimit[0]<endTime)
+          return false
+      times.add(intArrayOf(startTime,endTime-1))
+      return true
+  }
+}

@@ -26,3 +26,63 @@ class MyCalendarTwo() {
     }
   }
 }
+
+/** 25/01/03 */
+class MyCalendarTwo() {
+
+  data class Node(val start:Int, val end:Int, var v:Int)
+  private val kdTree = sortedSetOf<Node>(object:Comparator<Node>{
+      override fun compare(o1: Node?, o2: Node?): Int {
+          if (o1==null){
+              if (o2==null){
+                  return 0
+              }else{
+                  return -1
+              }
+          }else if(o2==null){
+              return 1
+          }
+          return o1.start-o2.start
+      }
+  }).apply { add(Node(0,Int.MAX_VALUE,0)) }
+  private fun split(x:Int):Node{
+      val nodeX = Node(x,0,0)
+      val greaterNode = kdTree.ceiling(nodeX)
+      // 有现成的
+      if (greaterNode!=null && greaterNode.start==x) return greaterNode
+      val lowerNode = kdTree.lower(nodeX)!!
+      val start = lowerNode.start
+      val end = lowerNode.end
+      val v = lowerNode.v
+      kdTree.remove(lowerNode)
+      kdTree.add(Node(start,x-1,v))
+      val ans = Node(x,end,v)
+      kdTree.add(ans)
+      return ans
+  }
+
+  fun book(startTime: Int, endTime: Int): Boolean {
+      val r = split(endTime)
+      var l = split(startTime)
+      val t= l
+      // 先检查一遍有没有已经预定2次的了
+      var ok = true
+      while (l!=r){
+          if (l.v<2){
+              l=kdTree.higher(l)!!
+              continue
+          }
+          ok=false
+          break
+      }
+      if (!ok) return false
+      // 将范围内的v都自增
+      l=t
+      while (l!=r){
+          l.v++
+          l=kdTree.higher(l)
+      }
+      return true
+  }
+
+}

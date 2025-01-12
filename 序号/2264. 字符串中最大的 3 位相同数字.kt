@@ -10,4 +10,4 @@ class Solution {
       }
       return if(c=='0'-1) "" else "$c$c$c"
   }
-}
+} 

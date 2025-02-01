@@ -1,3 +1,26 @@
+'''
+25/02/01
+'''
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        l,r = -1,len(nums)
+        while l+1<r:
+            m = (l+r)//2
+            if nums[m]==target:return True
+            if nums[m]==nums[r-1]:r-=1
+            elif nums[m]>nums[r-1]:
+                if target<nums[m] and target>nums[r-1]:
+                    r=m
+                else:
+                    l=m
+            else:
+                if target>nums[r-1] or target<nums[m]:
+                    r=m
+                else:
+                    l=m
+        return False
+
+
 class Solution:
     def search(self, nums: List[int], target: int) -> bool:
         n=len(nums)

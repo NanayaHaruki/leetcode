@@ -7,7 +7,7 @@ class Solution {
         flowers.sort()
         val n = flowers.size
 
-        val ps = IntArray(n+1) // ps[i]表示前i个花园 [0,i-1]的总数
+        val ps = LongArray(n+1) // ps[i]表示前i个花园 [0,i-1]的总数
         for (i in 1..n){
             flowers[i-1]=min(flowers[i -1],target) // 后面要计算满的花园总花数，这样方面统计
             ps[i]=ps[i-1]+flowers[i- 1]

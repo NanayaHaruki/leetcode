@@ -1,3 +1,42 @@
+/** 25/04/15 */
+class Solution {
+  private lateinit var t:IntArray
+  var n = 0
+  private fun lowerBit(x:Int) = x and -x
+  private fun update(_i:Int){
+      var i = _i
+      while(i<=n){
+          t[i]+=1
+          i+=lowerBit(i)
+      }
+  }
+  
+  private fun query(_i:Int):Int{
+      var i = _i
+      var ans = 0
+      while(i>0){
+          ans+=t[i]
+          i-=lowerBit(i)
+      }
+      return ans
+  }
+  fun goodTriplets(nums1: IntArray, nums2: IntArray): Long {
+      n = nums2.size
+      t = IntArray(n+1) // 数状数组下标从1开始
+      val mp = IntArray(n)
+      for(i in 0 until n) mp[nums1[i]]=i // mp存储nums1的值对应的索引
+      var ans = 0L
+      for(i in 0 until n){
+          val x = mp[nums2[i]]
+          val lower = query(x)
+          val higher = n-1-x - (i-lower) // 总共有多少个更大的，减去前面有多少个更大的，就是后面有多少个更大的
+          ans += lower.toLong()*higher
+          update(x+1)
+      }
+      return ans
+  }
+}
+
 class Solution {
   fun countSymmetricIntegers(low: Int, high: Int): Int {
       val highList = high.toString().map { it - '0' }

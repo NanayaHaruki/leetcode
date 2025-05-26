@@ -6,4 +6,6 @@
 /gradle/
 /src/main/*
 /bin
-/src
+.gitignore
+/src/*
+.DS_Store

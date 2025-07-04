@@ -20,7 +20,7 @@ class Solution:
                 cnt = 0
 
         if k <= 0:
-            return ans
+            return ans 111455704
 
         f = [[0] * k for _ in range(len(cnts) + 1)]
         f[0] = [1] * k

@@ -1,3 +1,26 @@
+/** 25.07.19 82ms */
+class Solution {
+    fun removeSubfolders(folder: Array<String>): List<String> {
+        folder.sort()
+        val st = mutableSetOf<String>()
+        for(x in folder){
+            var hasParent = false
+            for(i in 1 until x.length){
+                if(x[i]=='/'){
+                    val dir = x.substring(0,i)
+                    if(st.contains(dir)){
+                        hasParent=true
+                        break
+                    }
+                }
+            }
+            if(!hasParent) st.add(x)
+        }
+        return st.toList()
+    }
+}
+
+/** 23.02.08 480ms */
 class Solution {
   class Node(val dirName: String, var children: MutableMap<String, Node>?, var del: Boolean)
 

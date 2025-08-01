@@ -1,3 +1,20 @@
+/** 25-08-01 */
+class Solution {
+    fun generate(numRows: Int): List<List<Int>> {
+        val ans = MutableList(numRows) { MutableList(it+1){0}  }
+        for (row in 0 until numRows){
+            for (i in 0 .. row){
+                if(i==0) ans[row][i]=1
+                else if(i==row) ans[row][i]=1
+                else{
+                    ans[row][i]=ans[row-1][i-1]+ans[row-1][i]
+                }
+            }
+        }
+        return ans
+    }
+}
+
 class Solution {
     fun getRow(rowIndex: Int): List<Int> {
         return generate(rowIndex+1)[rowIndex]
